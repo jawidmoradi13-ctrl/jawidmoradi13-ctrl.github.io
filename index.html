@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jawid Moradi – Fachinformatiker für Systemintegration</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+:root{--bg:#eef2f5;--surface:#fff;--ink:#14212b;--muted:#566674;--line:#d3dde4;--accent:#0f766e;--accent-ink:#fff;--signal:#e8890c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e171d;--surface:#16232b;--ink:#e6eef2;--muted:#93a6b3;--line:#27373f;--accent:#3ec9b8;--accent-ink:#06211e;--signal:#f5a524;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e171d;--surface:#16232b;--ink:#e6eef2;--muted:#93a6b3;--line:#27373f;--accent:#3ec9b8;--accent-ink:#06211e;--signal:#f5a524;color-scheme:dark}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1.25rem}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:1.25rem;align-items:center;height:56px;overflow-x:auto;white-space:nowrap}
+nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a:hover{color:var(--ink)}
+nav .brand{color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;margin-right:auto}
+section{padding:4rem 0 1rem}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:700;margin-bottom:1.5rem}
+.hero{padding:4.5rem 0 2rem;display:grid;gap:2.5rem;grid-template-columns:1.3fr 1fr;align-items:center}
+.hero h1{font-size:clamp(2.4rem,7vw,4.4rem);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);max-width:34rem;margin:1.25rem 0 1.75rem}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.7rem 1.2rem;border-radius:8px;font-weight:500;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.status{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.25rem;font-size:.95rem}
+.status .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;padding:.45rem 0;border-bottom:1px solid var(--line)}
+.status .row>span:last-child{margin-left:auto;text-align:right}
+.status .row:last-of-type{border:0}
+.status .dot{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;background:var(--signal);margin-right:.5rem}
+.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin:.9rem 0 .35rem}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease}
+.small{color:var(--muted);font-size:.85rem}
+.skills{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.25rem}
+.box h3{font-size:1.1rem;margin-bottom:.75rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{font-size:.85rem;padding:.2rem .6rem;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
+.projects{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.proj h3{font-size:1.2rem}
+.proj p{color:var(--muted);margin:.6rem 0 1rem;font-size:1rem}
+.proj .tag{font-size:.8rem;color:var(--signal);font-weight:500;margin-bottom:.4rem}
+.timeline{list-style:none;margin:0;padding:0 0 0 1.5rem;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 1.75rem 1rem}
+.timeline li::before{content:"";position:absolute;left:-1.5rem;top:.5rem;width:12px;height:12px;border-radius:50%;background:var(--accent);transform:translateX(-5px)}
+.timeline b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.1rem}
+.timeline .when{color:var(--muted);font-size:.9rem;display:block}
+.docs{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
+.docs li{display:flex;justify-content:space-between;gap:1rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem}
+footer{margin-top:4rem;border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-top:2.5rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+.hero{position:relative;isolation:isolate}
+#net{position:absolute;inset:-2rem -50vw;width:calc(100% + 100vw);height:calc(100% + 4rem);z-index:-1;opacity:0;animation:fade 2.2s .3s forwards;mask-image:linear-gradient(to bottom,#000 70%,transparent)}
+.w{display:inline-block;opacity:0;transform:translateY(.55em);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*110ms + 150ms)}
+.hero p,.btns{opacity:0;animation:up .8s cubic-bezier(.2,.7,.2,1) .65s forwards}
+.status{opacity:0;animation:slide .9s cubic-bezier(.2,.7,.2,1) .5s forwards}
+.status .dot{animation:blink 2s ease-in-out infinite}
+@keyframes up{from{opacity:0;transform:translateY(.55em)}to{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;transform:translateX(34px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes blink{50%{opacity:.25}}
+@keyframes ring{0%{box-shadow:0 0 0 0 var(--accent)}100%{box-shadow:0 0 0 12px transparent}}
+#prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;height:3px;background:var(--signal);transform:scaleX(0);transform-origin:left;z-index:9}
+nav a.on{color:var(--ink);box-shadow:inset 0 -2px var(--accent)}
+.box,.docs li{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.box:hover,.docs li:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 28px -18px var(--accent)}
+.btn{transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary:hover{box-shadow:0 10px 22px -10px var(--accent)}
+.chip{transition:background .2s ease,color .2s ease,border-color .2s ease}
+.chip:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.timeline:first-of-type li:first-child::before{animation:ring 2s ease-out infinite}
+.js .rv{opacity:0;translate:0 28px;transition:opacity .8s ease var(--d,0s),translate .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.js .rv.in{opacity:1;translate:0 0}
+.js .rv .chip{opacity:0;scale:.7;transition:opacity .4s ease calc(var(--c,0)*60ms + .35s),scale .5s cubic-bezier(.3,1.5,.5,1) calc(var(--c,0)*60ms + .35s),background .2s ease,color .2s ease,border-color .2s ease}
+.js .rv.in .chip{opacity:1;scale:1}
+@media (prefers-reduced-motion:reduce){.w,.hero p,.btns,.status,#net{animation:none;opacity:1;transform:none}.status .dot,.timeline li::before{animation:none!important}.js .rv,.js .rv .chip{opacity:1;translate:none;scale:none;transition:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav><div class="wrap">
+<a class="brand" href="#top">Jawid Moradi</a>
+<a href="#skills">Skills</a><a href="#projekte">Projekte</a><a href="#lebenslauf">Lebenslauf</a><a href="#unterlagen">Unterlagen</a><a href="#kontakt">Kontakt</a>
+</div></nav>
 
+<main class="wrap" id="top">
+<div class="hero">
+<canvas id="net" aria-hidden="true"></canvas>
+<div>
+<h1><span class="w" style="--i:0">Systemintegration,</span> <span class="w" style="--i:1">Schritt</span> <span class="w" style="--i:2">für</span> <span class="w" style="--i:3">Schritt.</span></h1>
+<p>Ich mache seit Februar 2026 eine Umschulung zum Fachinformatiker für Systemintegration bei Damago in Hamburg. Mich interessieren moderne Netzwerke, IT-Sicherheit und stabile IT-Infrastruktur. Erste Praxis habe ich mit SQL und Cisco.</p>
+<div class="btns"><a class="btn primary" href="#projekte">Projekte ansehen</a><a class="btn" href="#kontakt">Kontakt aufnehmen</a></div>
+</div>
+<aside class="status" aria-label="Aktueller Stand">
+<div class="row"><span><span class="dot"></span>Aktuell</span><span>Umschulung bei Damago GmbH</span></div>
+<div class="row"><span>Start</span><span>Februar 2026</span></div>
+<div class="row"><span>Ziel</span><span>Fachinformatiker SI</span></div>
+<div class="bar"><i id="bar"></i></div>
+<div class="small" id="barText"></div>
+</aside>
+</div>
+
+<section id="skills">
+<h2>Was ich bisher gelernt habe</h2>
+<div class="skills">
+<div class="box"><h3>Netzwerk &amp; Sicherheit</h3><div class="chips"><span class="chip">Netzwerkgrundlagen</span><span class="chip">Cisco</span><span class="chip">Firewalls &amp; VPN</span><span class="chip">IT-Sicherheit</span></div></div>
+<div class="box"><h3>Systeme &amp; Scripting</h3><div class="chips"><span class="chip">Linux</span><span class="chip">PowerShell</span><span class="chip">Python</span></div></div>
+<div class="box"><h3>Daten &amp; Office</h3><div class="chips"><span class="chip">SQL</span><span class="chip">Office Excel</span></div></div>
+<div class="box"><h3>Betrieb</h3><div class="chips"><span class="chip">Backup &amp; Recovery</span></div></div>
+</div>
+<p class="small">Alles auf Grundlagen-Niveau. Ich lerne jeden Monat dazu.</p>
+</section>
+
+<section id="projekte">
+<h2>Projekte</h2>
+<p style="color:var(--muted);max-width:40rem;margin-top:-.5rem">Meine ersten eigenen Projekte entstehen gerade. Das habe ich als Nächstes vor, jeweils mit Dokumentation.</p>
+<div class="projects">
+<article class="box proj"><div class="tag">Geplant</div><h3>Homelab mit virtuellen Maschinen</h3><p>Eine Testumgebung mit Linux-Server und Clients, dazu ein Netzplan.</p><div class="chips"><span class="chip">Linux</span><span class="chip">Virtualisierung</span></div></article>
+<article class="box proj"><div class="tag">Geplant</div><h3>Firmennetz mit Cisco simulieren</h3><p>Abteilungen trennen, Routing einrichten und alles dokumentieren.</p><div class="chips"><span class="chip">Cisco</span><span class="chip">VLAN</span></div></article>
+<article class="box proj"><div class="tag">Geplant</div><h3>Backup-Konzept mit Wiederherstellungstest</h3><p>Daten sichern, per Skript automatisieren und die Wiederherstellung testen.</p><div class="chips"><span class="chip">Backup &amp; Recovery</span><span class="chip">PowerShell</span></div></article>
+</div>
+</section>
+
+<section id="lebenslauf">
+<h2>Lebenslauf</h2>
+<h3 style="margin-bottom:1rem">Berufserfahrung</h3>
+<ul class="timeline">
+<li><span class="when">Seit 02/2026</span><b>Umschulung Fachinformatiker für Systemintegration</b><div>Damago GmbH, Hamburg</div></li>
+<li><span class="when">03/2022 – 08/2022</span><b>Schneider</b><div>Erfahrung in der Türkei gesammelt</div></li>
+<li><span class="when">02/2018 – 04/2020</span><b>Barkeeper</b><div>Bar Hamburg GmbH: Kasse und Abrechnung, Betreuung und Beratung von Gästen, Einarbeitung neuer Mitarbeiter</div></li>
+<li><span class="when">09/2015 – 02/2018</span><b>Schneider</b><div>Faryab, Afghanistan: betriebliche Ausbildung zum Schneider, Anfertigung verschiedener Kleidungsmodelle</div></li>
+</ul>
+<h3 style="margin:1rem 0">Bildung</h3>
+<ul class="timeline">
+<li><span class="when">03/2024 – 02/2025</span><b>Sprachkurs, Zertifikat B2</b><div>Interkulturelle Bildung Hamburg e.V.</div></li>
+<li><span class="when">01/2023 – 11/2023</span><b>Integrationskurs, Zertifikat B1</b><div>FITS job konzepte GmbH, Hamburg</div></li>
+</ul>
+<h3 style="margin:1rem 0">Sprachen</h3>
+<div class="chips"><span class="chip">Usbekisch (Muttersprache)</span><span class="chip">Persisch (Muttersprache)</span><span class="chip">Deutsch B2</span><span class="chip">Türkisch B2</span><span class="chip">Englisch B1</span></div>
+</section>
+
+<section id="unterlagen">
+<h2>Unterlagen</h2>
+<ul class="docs">
+<li><span>Lebenslauf (PDF)</span><span class="small">Link ergänzen</span></li>
+<li><span>Zeugnisse und Zertifikate</span><span class="small">Link ergänzen</span></li>
+<li><span>Projektdokumentationen</span><span class="small">Link ergänzen</span></li>
+</ul>
+</section>
+
+<section id="kontakt">
+<h2>Kontakt</h2>
+<div class="box">
+<p style="margin:0 0 .5rem">Ich freue mich über Austausch, Tipps und Angebote rund um die IT-Systemintegration.</p>
+<p style="margin:0">E-Mail: <a href="mailto:jawid.morado13@gmail.com">jawid.morado13@gmail.com</a></p>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap">© 2026 Jawid Moradi · Hamburg</div></footer>
+
+<script>
+(function(){
+  var start=new Date(2026,1,1), months=24; /* Umschulung: Start Feb 2026, Dauer 24 Monate – anpassen */
+  var now=new Date();
+  var m=(now.getFullYear()-start.getFullYear())*12+now.getMonth()-start.getMonth()+1;
+  var pct=Math.max(0,Math.min(100,Math.round(m/months*100)));
+  document.getElementById('barText').textContent='Monat '+m+' von '+months+' der Umschulung';
+  setTimeout(function(){document.getElementById('bar').style.width=pct+'%'},200);
+})();
+</script>
+<script>
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* Einblenden beim Scrollen */
+  var items=document.querySelectorAll('section h2,section > h3,section .box,.docs li,.timeline li');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(el){
+    el.classList.add('rv');
+    var i=[].indexOf.call(el.parentNode.children,el);
+    el.style.setProperty('--d',(i%6)*90+'ms');
+    el.querySelectorAll('.chip').forEach(function(c,k){c.style.setProperty('--c',k)});
+    if(rm){el.classList.add('in')}else{io.observe(el)}
+  });
+  /* Scroll-Fortschritt und aktive Navigation */
+  var prog=document.getElementById('prog');
+  function sc(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(m>0?Math.min(1,scrollY/m):0)+')'}
+  addEventListener('scroll',sc,{passive:true});sc();
+  var links={};
+  document.querySelectorAll('nav a[href^="#"]').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){for(var k in links)links[k].classList.remove('on');if(links[e.target.id])links[e.target.id].classList.add('on')}})},{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(function(s){so.observe(s)});
+  /* Netzwerk-Animation im Startbereich */
+  var c=document.getElementById('net'),x=c.getContext('2d'),hero=c.parentNode,W=0,H=0,N=[],mx=-999,my=-999,vis=true,raf=0;
+  function size(){
+    var r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);
+    W=r.width;H=r.height;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);
+    var n=W<700?22:46;N=[];
+    for(var i=0;i<n;i++)N.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4});
+  }
+  function draw(){
+    var cs=getComputedStyle(document.documentElement),a=cs.getPropertyValue('--accent').trim(),s=cs.getPropertyValue('--signal').trim();
+    x.clearRect(0,0,W,H);
+    for(var i=0;i<N.length;i++){
+      var p=N[i];
+      if(!rm){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1}
+      for(var j=i+1;j<N.length;j++){
+        var q=N[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<150){x.globalAlpha=(1-d/150)*.35;x.strokeStyle=a;x.lineWidth=1;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}
+      }
+      var mdx=p.x-mx,mdy=p.y-my,md=Math.sqrt(mdx*mdx+mdy*mdy);
+      if(md<180){x.globalAlpha=(1-md/180)*.8;x.strokeStyle=s;x.lineWidth=1.2;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(mx,my);x.stroke()}
+      x.globalAlpha=.7;x.fillStyle=a;x.beginPath();x.arc(p.x,p.y,2.4,0,6.283);x.fill();
+    }
+    x.globalAlpha=1;
+    if(!rm&&vis)raf=requestAnimationFrame(draw);else raf=0;
+  }
+  size();draw();
+  addEventListener('resize',function(){size();if(!raf)draw()});
+  hero.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
+  hero.addEventListener('pointerleave',function(){mx=my=-999});
+  new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!raf&&!rm)draw()}).observe(hero);
+})();
+</script>
+</body>
+</html>
