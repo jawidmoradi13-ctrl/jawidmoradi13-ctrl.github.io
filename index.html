@@ -34,6 +34,9 @@ a{color:inherit;text-decoration:none}
 ::selection{background:rgba(59,107,245,.22)}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
+/* SCROLL PROGRESS */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--violet));box-shadow:0 0 12px rgba(59,107,245,.6);transition:width .12s linear}
+
 /* NAV */
 .nav{position:sticky;top:0;z-index:100;background:rgba(7,11,20,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
 .nav .wrap{max-width:1120px;margin:0 auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -42,6 +45,9 @@ a{color:inherit;text-decoration:none}
 .brand small{display:block;font-size:.62rem;font-weight:600;color:#8fa3c8;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 .nav-links{display:flex;gap:26px;align-items:center}
 .nav-links a{color:#a9b7d0;font-size:.84rem;font-weight:600;transition:color .2s}
+.nav-links a:not(.nav-cta){position:relative}
+.nav-links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:#fff;transition:width .28s ease}
+.nav-links a:not(.nav-cta):hover::after{width:100%}
 .nav-links a:hover{color:#fff}
 .nav-links .nav-cta{padding:9px 17px;border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff}
 .nav-links .nav-cta:hover{border-color:var(--blue);background:rgba(59,107,245,.16)}
@@ -55,6 +61,15 @@ a{color:inherit;text-decoration:none}
 .badge{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:#b9c8e4}
 .badge i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 2s infinite}
 @keyframes pulse{50%{opacity:.35}}
+.hero::before{animation:glow 16s ease-in-out infinite alternate}
+@keyframes glow{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-24px,18px)}}
+.badge,.hero h1,.hero .role,.hero .lead,.hero-actions,.hero-card{animation:rise .9s cubic-bezier(.16,1,.3,1) backwards}
+.hero h1{animation-delay:.08s}
+.hero .role{animation-delay:.16s}
+.hero .lead{animation-delay:.24s}
+.hero-actions{animation-delay:.32s}
+.hero-card{animation-delay:.2s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .hero h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.06;font-weight:800;letter-spacing:-.045em;margin:22px 0 14px}
 .hero h1 span{background:linear-gradient(100deg,#7ea6ff,#22b8cf 55%,#a48bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .role{font-family:var(--mono);font-size:clamp(.9rem,2vw,1.06rem);color:#9fc1ff;letter-spacing:.02em}
@@ -66,7 +81,8 @@ a{color:inherit;text-decoration:none}
 .btn-primary:hover{box-shadow:0 20px 40px rgba(59,107,245,.5)}
 .btn-ghost{border:1px solid rgba(255,255,255,.22);color:#fff}
 .btn-ghost:hover{background:rgba(255,255,255,.08)}
-.hero-card{position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:28px;backdrop-filter:blur(12px);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.hero-card{position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:28px;backdrop-filter:blur(12px);box-shadow:0 30px 80px rgba(0,0,0,.35);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.hero-card:hover{transform:translateY(-7px);box-shadow:0 40px 95px rgba(0,0,0,.45)}
 .hero-card::before{content:'';position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(140deg,rgba(59,107,245,.7),transparent 45%,rgba(34,184,207,.5));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .hero-card .hc-top{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.72rem;color:#8fa3c8;letter-spacing:.08em;text-transform:uppercase}
 .hero-card h2{font-size:1.1rem;margin:16px 0 18px;font-weight:700}
@@ -81,6 +97,7 @@ a{color:inherit;text-decoration:none}
 .ticker-track span{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;color:#7f92b4;text-transform:uppercase;white-space:nowrap}
 .ticker-track span::before{content:'◆';color:var(--blue);margin-right:14px;font-size:.6rem}
 @keyframes scroll{to{transform:translateX(-50%)}}
+.ticker:hover .ticker-track{animation-play-state:paused}
 
 /* SECTIONS */
 .section{padding:86px 24px}
@@ -147,7 +164,8 @@ a{color:inherit;text-decoration:none}
 .lang-row .nm{font-weight:700;font-size:.94rem}
 .lang-row .lv{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--muted)}
 .bar{height:7px;border-radius:99px;background:#e8edf6;overflow:hidden;margin-top:7px}
-.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform 1.15s cubic-bezier(.16,1,.3,1)}
+.bar i.in{transform:scaleX(1)}
 .native{font-size:.82rem;color:var(--muted);margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
 .native b{color:var(--ink)}
 
@@ -169,8 +187,20 @@ footer{background:var(--bg);color:#7e8fab;text-align:center;padding:28px 24px;fo
 footer a{color:#9fb0ca;margin:0 6px}
 footer a:hover{color:#fff}
 
+/* PORTRAIT */
+.hero-intro{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.portrait{width:86px;height:86px;border-radius:22px;overflow:hidden;flex:none;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:1.7rem;color:#fff;background:linear-gradient(135deg,var(--blue),var(--violet));border:2px solid rgba(255,255,255,.25);box-shadow:0 12px 30px rgba(59,107,245,.35)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:none}
+.portrait.has-photo img{display:block}
+.portrait.has-photo span{display:none}
+
+/* BACK TO TOP */
+.totop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border:0;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;font-size:1.1rem;cursor:pointer;z-index:90;display:grid;place-items:center;box-shadow:0 12px 28px rgba(59,107,245,.4);opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .35s,transform .35s}
+.totop.show{opacity:1;pointer-events:auto;transform:none}
+.totop:hover{transform:translateY(-4px)}
+
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
 .reveal.in{opacity:1;transform:none}
 
 @media(max-width:900px){
@@ -191,6 +221,7 @@ footer a:hover{color:#fff}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
+  .bar i{transform:scaleX(1)!important}
   html{scroll-behavior:auto}
 }
 @media print{
@@ -205,10 +236,16 @@ footer a:hover{color:#fff}
   .section{padding:26px 0}
   .panel,.skill-card,.edu-item{box-shadow:none}
   .reveal{opacity:1!important;transform:none!important}
+  .bar i{transform:none!important}
+  .hero *{animation:none!important}
+  .totop{display:none}
+  .portrait{box-shadow:none;border-color:var(--line)}
 }
 </style>
 </head>
 <body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <nav class="nav">
   <div class="wrap">
@@ -228,12 +265,19 @@ footer a:hover{color:#fff}
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <span class="badge"><i></i> Umschulung seit 02/2026 · Damago GmbH</span>
+      <div class="hero-intro">
+        <div class="portrait" id="portrait">
+          <img src="profilfoto.jpg" alt="Porträt von Jawid Moradi">
+          <span>JM</span>
+        </div>
+        <span class="badge"><i></i> Umschulung seit 02/2026 · Damago GmbH</span>
+      </div>
       <h1>Jawid <span>Moradi</span></h1>
       <div class="role">Fachinformatiker für Systemintegration</div>
       <p class="lead">Engagierter Teilnehmer einer Umschulung zum Fachinformatiker für Systemintegration. Mit großem Interesse an modernen Netzwerken, IT-Sicherheit und stabiler IT-Infrastruktur baue ich mein technisches Fundament zielstrebig aus.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="mailto:jawid.moradi13@gmail.com">✉ Kontakt aufnehmen</a>
+        <a class="btn btn-ghost" href="bewerbung.html">▤ Bewerbungsfolie</a>
         <a class="btn btn-ghost" href="#" onclick="window.print();return false;">⬇ Lebenslauf drucken</a>
       </div>
     </div>
@@ -242,7 +286,7 @@ footer a:hover{color:#fff}
       <h2>Technisches Fundament</h2>
       <div class="chip-cloud">
         <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span>
-        <span>PowerShell</span><span>Python</span><span>SQL</span>
+        <span>PowerShell</span><span>Python</span><span>Java</span><span>SQL</span>
         <span>Excel</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span>
         <span>Backup &amp; Recovery</span>
       </div>
@@ -253,8 +297,8 @@ footer a:hover{color:#fff}
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span><span>PowerShell</span><span>Python</span><span>SQL</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span><span>Backup &amp; Recovery</span><span>Excel</span>
-    <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span><span>PowerShell</span><span>Python</span><span>SQL</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span><span>Backup &amp; Recovery</span><span>Excel</span>
+    <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span><span>PowerShell</span><span>Python</span><span>Java</span><span>SQL</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span><span>Backup &amp; Recovery</span><span>Excel</span>
+    <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span><span>PowerShell</span><span>Python</span><span>Java</span><span>SQL</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span><span>Backup &amp; Recovery</span><span>Excel</span>
   </div>
 </div>
 
@@ -272,8 +316,9 @@ footer a:hover{color:#fff}
       </div>
       <div class="fact-grid reveal">
         <div class="fact"><b>02/2026</b><span>Start der Umschulung</span></div>
-        <div class="fact"><b>10+</b><span>Technische Grundlagen</span></div>
-        <div class="fact"><b>4</b><span>Sprachen</span></div>
+        <div class="fact"><b data-count="10" data-suffix="+">10+</b><span>Technische Grundlagen</span></div>
+        <div class="fact"><b data-count="4">4</b><span>Sprachen</span></div>
+        <div class="fact"><b>B</b><span>Führerschein Klasse B</span></div>
       </div>
     </div>
   </div>
@@ -296,7 +341,7 @@ footer a:hover{color:#fff}
         <div class="ic">02</div>
         <h3>Scripting &amp; Daten</h3>
         <p class="desc">Erste praktische Kenntnisse</p>
-        <div class="tags"><span>Python</span><span>SQL</span><span>PowerShell</span><span>Office Excel</span></div>
+        <div class="tags"><span>Python</span><span>Java</span><span>SQL</span><span>PowerShell</span><span>Office Excel</span></div>
       </div>
       <div class="skill-card reveal">
         <div class="ic">03</div>
@@ -405,14 +450,79 @@ footer a:hover{color:#fff}
 </div>
 
 <footer>
-  © 2026 Jawid Moradi · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+  © 2026 Jawid Moradi · <a href="bewerbung.html">Bewerbungsfolie</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
 </footer>
 
 <script>
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
-},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Foto: wird automatisch angezeigt, sobald profilfoto.jpg im Ordner liegt */
+  var pic=document.querySelector('#portrait img');
+  if(pic){
+    var show=function(){pic.parentElement.classList.add('has-photo');};
+    pic.addEventListener('load',show);
+    if(pic.complete && pic.naturalWidth>0) show();
+  }
+
+  /* Gestaffelte Einblendung */
+  document.querySelectorAll('.skills-grid,.timeline,.fact-grid,.tl-desc ul').forEach(function(group){
+    [].slice.call(group.children).forEach(function(el,i){
+      if(el.classList.contains('reveal')) el.style.setProperty('--d',(i*.09)+'s');
+    });
+  });
+
+  var reveal=function(el){el.classList.add('in');};
+  if(reduce){
+    document.querySelectorAll('.reveal,.bar i').forEach(reveal);
+  }else{
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){reveal(en.target);io.unobserve(en.target);}});
+    },{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+    var barIo=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){reveal(en.target);barIo.unobserve(en.target);}});
+    },{threshold:.4});
+    document.querySelectorAll('.bar i').forEach(function(el){barIo.observe(el);});
+
+    /* Zahlen zählen hoch */
+    var countIo=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        countIo.unobserve(en.target);
+        var el=en.target,target=parseInt(el.getAttribute('data-count'),10),suffix=el.getAttribute('data-suffix')||'',start=null;
+        var step=function(ts){
+          if(!start) start=ts;
+          var p=Math.min((ts-start)/1100,1),ease=1-Math.pow(1-p,3);
+          el.textContent=Math.round(target*ease)+suffix;
+          if(p<1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    },{threshold:.5});
+    document.querySelectorAll('[data-count]').forEach(function(el){countIo.observe(el);});
+  }
+
+  /* Scroll-Fortschritt + Nach-oben-Button */
+  var bar=document.getElementById('progress'),top=document.createElement('button');
+  top.className='totop';top.type='button';top.setAttribute('aria-label','Nach oben');top.textContent='↑';
+  document.body.appendChild(top);
+  var onScroll=function(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?(h.scrollTop/max)*100:0)+'%';
+    top.classList.toggle('show',h.scrollTop>500);
+  };
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  top.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});});
+  onScroll();
+
+  /* Menü schließt sich nach Klick */
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click',function(){document.querySelector('.nav-links').classList.remove('open');});
+  });
+})();
 </script>
 </body>
 </html>

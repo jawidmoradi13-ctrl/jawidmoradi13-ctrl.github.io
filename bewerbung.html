@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Bewerbungsunterlagen – Jawid Moradi, Fachinformatiker für Systemintegration.">
+<title>Bewerbungsfolie · Jawid Moradi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#101828;--navy-2:#1b2b49;--gold:#b48a3c;--gold-soft:#f6efdf;
+  --ink:#25324a;--muted:#6b7688;--line:#e3e7ee;--paper:#e9edf4;--blue:#3b6bf5;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;background:radial-gradient(900px 600px at 50% -10%,#24365c,#0c1220 70%);font-family:'Manrope',sans-serif;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px 18px 92px}
+.stage{width:min(1080px,96vw)}
+.stage-head{display:flex;justify-content:space-between;align-items:center;color:#a9b8d2;font-size:.78rem;font-family:monospace;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;padding:0 4px}
+.stage-head a{color:#cfdbef;text-decoration:none}
+.deck{position:relative;width:100%;aspect-ratio:16/9;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5)}
+.slide{position:absolute;inset:0;padding:6.2% 7.5%;opacity:0;transform:translateX(26px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1);pointer-events:none;background:#fff;overflow:auto}
+.slide.active{opacity:1;transform:none;pointer-events:auto;z-index:2}
+.slide::after{content:'';position:absolute;left:7.5%;right:7.5%;bottom:4.4%;height:1px;background:var(--line)}
+.slide::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--navy) 0 62%,var(--gold) 62% 100%)}
+h1,h2{font-family:'Playfair Display',Georgia,serif;color:var(--navy);letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1}
+h2{font-size:clamp(1.5rem,3.4vw,2.3rem);margin-bottom:6px}
+.kicker{font-family:monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.rule{width:56px;height:3px;background:var(--gold);margin:18px 0}
+.lead{font-size:clamp(.95rem,1.7vw,1.16rem);color:var(--ink);line-height:1.7;max-width:86%}
+p{font-size:clamp(.82rem,1.35vw,1rem);line-height:1.75;color:var(--ink)}
+.muted{color:var(--muted)}
+.ph{background:#fdf3d9;border-bottom:1px dashed var(--gold);padding:0 3px;border-radius:3px}
+
+/* Slide 1 */
+.cover{display:grid;grid-template-columns:1fr 280px;gap:6%;align-items:center;height:100%}
+.cover .role{font-size:clamp(1rem,2vw,1.3rem);color:var(--navy-2);font-weight:700;margin-top:12px}
+.cover .meta{margin-top:28px;font-family:monospace;font-size:.8rem;color:var(--muted);line-height:1.9}
+.cover .meta b{color:var(--gold);font-weight:600}
+.photo{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(145deg,var(--navy),#2c446e);color:#fff;font-family:'Playfair Display',serif;font-size:3.4rem;border:6px solid #fff;box-shadow:0 18px 40px rgba(16,24,40,.22)}
+.photo img{width:100%;height:100%;object-fit:cover;display:none}
+.photo.has-photo img{display:block}
+.photo.has-photo span{display:none}
+
+/* Slide 2 letter */
+.letter{display:grid;grid-template-columns:1fr 1fr;gap:6%;height:100%}
+.letter .to{font-size:.85rem;line-height:1.9;color:var(--muted)}
+.letter .body p{margin-bottom:11px}
+.letter .sign{margin-top:16px;font-weight:700;color:var(--navy)}
+.letter .anlagen{margin-top:14px;font-size:.78rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+
+/* Slide 3 skills */
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:16px}
+.box{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:13px 16px;background:#fcfdff}
+.box b{display:block;color:var(--navy);font-size:.94rem;margin-bottom:5px}
+.box span{font-size:.8rem;color:var(--muted);line-height:1.6}
+.quote{margin-top:16px;padding:12px 16px;background:var(--gold-soft);border-left:3px solid var(--gold);font-family:'Playfair Display',serif;font-style:italic;color:var(--navy);font-size:clamp(.9rem,1.5vw,1.1rem)}
+
+/* Slide 4 timeline */
+.jobs{display:grid;gap:11px;margin-top:14px}
+.job{display:grid;grid-template-columns:130px 1fr;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.job .yr{font-family:monospace;font-size:.75rem;color:var(--gold);font-weight:600;padding-top:3px}
+.job b{color:var(--navy);font-size:.98rem}
+.job small{display:block;color:var(--muted);font-size:.8rem}
+.job ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:5px}
+.job li{font-size:.76rem;color:var(--muted);position:relative;padding-left:11px}
+.job li::before{content:'·';position:absolute;left:2px;color:var(--gold);font-weight:800}
+
+/* Slide 5 education */
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:8%;height:100%}
+.edu-item{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:12px;background:#fcfdff}
+.edu-item .yr{font-family:monospace;font-size:.74rem;color:var(--gold);font-weight:600}
+.edu-item b{display:block;color:var(--navy);font-size:1rem;margin:4px 0 2px}
+.edu-item span{font-size:.82rem;color:var(--muted)}
+.cert{display:inline-block;margin-top:9px;font-family:monospace;font-size:.68rem;font-weight:600;color:#0d7a5f;background:#e8f8f1;border:1px solid #bfe8d8;padding:3px 8px;border-radius:5px}
+.lang{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.lang b{color:var(--navy)}
+.lang span{font-family:monospace;font-size:.78rem;color:var(--gold)}
+.native{margin-top:12px;font-size:.82rem;color:var(--muted)}
+
+/* Slide 6 contact */
+.end{display:grid;place-items:center;text-align:center;height:100%}
+.end .big{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.4vw,2.6rem);color:var(--navy)}
+.end .mail{display:inline-block;margin-top:22px;padding:12px 22px;border-radius:8px;background:var(--navy);color:#fff;font-weight:700;text-decoration:none;font-size:clamp(.9rem,1.6vw,1.1rem)}
+.end .tel{display:block;margin-top:12px;color:var(--muted);font-family:monospace;font-size:.85rem;text-decoration:none}
+.end .thanks{margin-top:24px;font-family:monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+
+/* Controls */
+.controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(12,18,32,.9);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:8px 14px;backdrop-filter:blur(12px);z-index:20}
+.controls button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer;font-size:1rem;transition:background .2s}
+.controls button:hover{background:rgba(255,255,255,.14)}
+.controls .count{font-family:monospace;color:#c6d4ea;font-size:.78rem;min-width:52px;text-align:center}
+.dots{display:flex;gap:6px}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:background .2s,transform .2s}
+.dots i.on{background:var(--gold);transform:scale(1.3)}
+.hint{position:fixed;bottom:74px;left:50%;transform:translateX(-50%);color:#7f92b4;font-size:.72rem;font-family:monospace;z-index:10}
+
+@media(max-width:760px){
+  .deck{aspect-ratio:auto;min-height:calc(100vh - 160px)}
+  .slide{padding:9% 8% 12%}
+  .cover{grid-template-columns:1fr;gap:16px;align-content:center}
+  .photo{width:110px;aspect-ratio:1;font-size:2.2rem}
+  .letter,.edu{grid-template-columns:1fr;gap:14px}
+  .cols{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:3px}
+  .hint{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@page{size:A4 landscape;margin:0}
+@media print{
+  body{background:#fff;padding:0;display:block}
+  .stage{width:100%}
+  .stage-head,.controls,.hint{display:none}
+  .deck{width:100%;aspect-ratio:auto;box-shadow:none;border-radius:0}
+  .slide{position:relative;inset:auto;width:100%;height:100vh;opacity:1!important;transform:none!important;page-break-after:always;break-after:page;overflow:hidden}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="stage-head"><span>Bewerbungsunterlagen · Jawid Moradi</span><a href="index.html">← Zum IT-Profil</a></div>
+  <div class="deck" id="deck">
+
+    <!-- 1: Titel -->
+    <section class="slide active">
+      <div class="cover">
+        <div>
+          <div class="kicker">Bewerbung 2026</div>
+          <h1>Jawid Moradi</h1>
+          <div class="role">Fachinformatiker für Systemintegration</div>
+          <div class="rule"></div>
+          <p class="lead">Netzwerke · IT-Sicherheit · stabile Infrastruktur – mit Praxiseinsatz bei der Damago GmbH.</p>
+          <div class="meta"><b>E-Mail</b> jawid.moradi13@gmail.com<br><b>Telefon</b> 0157 57794766<br><b>Führerschein</b> Klasse B<br><b>Stand</b> November 2026</div>
+        </div>
+        <div class="photo" id="photo"><img src="profilfoto.jpg" alt="Porträt von Jawid Moradi"><span>JM</span></div>
+      </div>
+    </section>
+
+    <!-- 2: Anschreiben (Entwurf – Platzhalter bitte ersetzen) -->
+    <section class="slide">
+      <div class="kicker">Anschreiben · Entwurf</div>
+      <h2>Bewerbung als Fachinformatiker für Systemintegration</h2>
+      <div class="rule"></div>
+      <div class="letter">
+        <div class="to">
+          <span class="ph">[Unternehmen]</span><br>
+          <span class="ph">[z. H. Ansprechpartner/in]</span><br><br>
+          Datum: <span class="ph">[TT.MM.JJJJ]</span><br><br>
+          <b>Betreff</b><br>
+          Bewerbung als Fachinformatiker für Systemintegration<br>
+          <span class="ph">[ggf. Referenznummer]</span>
+        </div>
+        <div class="body">
+          <p>Sehr geehrte Damen und Herren,</p>
+          <p>seit Februar 2026 absolviere ich eine Umschulung zum Fachinformatiker für Systemintegration mit Praxiseinsatz bei der Damago GmbH. Mit großem Interesse an modernen Netzwerken, IT-Sicherheit und stabiler IT-Infrastruktur möchte ich mein technisches Fundament ab <span class="ph">[Datum]</span> in Ihrem Team einbringen.</p>
+          <p>Zu meinen Schwerpunkten zählen Netzwerkgrundlagen, Cisco, Linux, PowerShell, Python, Java, SQL, IT-Sicherheit, Firewalls &amp; VPN sowie Backup &amp; Recovery. Erste praktische Kenntnisse in SQL und Cisco verbinde ich mit Zuverlässigkeit, ausgeprägter Teamfähigkeit und starker Motivation.</p>
+          <p>Bereits in früheren Tätigkeiten habe ich Verantwortung übernommen – in der Kassenabrechnung, in der Gästeberatung und bei der Einarbeitung neuer Mitarbeiter. Diese Erfahrung prägt meine strukturierte, serviceorientierte Arbeitsweise.</p>
+          <p>Ich freue mich sehr auf die Einladung zu einem persönlichen Gespräch.</p>
+          <p class="sign">Mit freundlichen Grüßen<br>Jawid Moradi</p>
+          <div class="anlagen">Anlagen: Lebenslauf · Zeugnisse</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3: Profil -->
+    <section class="slide">
+      <div class="kicker">Profil &amp; Kompetenzen</div>
+      <h2>Technisches Fundament mit klarem Fokus</h2>
+      <div class="rule"></div>
+      <p class="lead">Engagierter Teilnehmer einer Umschulung zum Fachinformatiker für Systemintegration. Mit großem Interesse an modernen Netzwerken, IT-Sicherheit und stabiler IT-Infrastruktur baue ich mein Wissen zielstrebig aus.</p>
+      <div class="cols">
+        <div class="box"><b>Netzwerk &amp; Systeme</b><span>Netzwerkgrundlagen · Cisco · Linux</span></div>
+        <div class="box"><b>Scripting &amp; Daten</b><span>Python · Java · SQL · PowerShell · Office Excel</span></div>
+        <div class="box"><b>Sicherheit &amp; Backup</b><span>IT-Sicherheit · Firewalls &amp; VPN · Backup &amp; Recovery</span></div>
+        <div class="box"><b>Arbeitsweise</b><span>Zuverlässigkeit · Teamfähigkeit · Dokumentation</span></div>
+      </div>
+      <div class="quote">„Störung → Analyse → Lösung → Dokumentation."</div>
+    </section>
+
+    <!-- 4: Werdegang -->
+    <section class="slide">
+      <div class="kicker">Werdegang</div>
+      <h2>Erfahrung, die Disziplin geprägt hat</h2>
+      <div class="rule"></div>
+      <div class="jobs">
+        <div class="job"><div class="yr">02/2026 – heute</div><div><b>Fachinformatiker für Systemintegration</b><small>Damago GmbH · Umschulung mit Praxiseinsatz</small></div></div>
+        <div class="job"><div class="yr">03/2022 – 08/2022</div><div><b>Schneider</b><small>Erfahrung in der Türkei gesammelt</small></div></div>
+        <div class="job"><div class="yr">02/2018 – 04/2020</div><div><b>Barkeeper</b><small>Bar Hamburg GmbH</small><ul><li>Kasse bedienen &amp; abrechnen</li><li>Beratung von Gästen</li><li>Einarbeitung neuer Mitarbeiter</li></ul></div></div>
+        <div class="job"><div class="yr">09/2015 – 02/2018</div><div><b>Schneider</b><small>Faryab, Afghanistan · Betriebliche Ausbildung, Kleidungsmodelle</small></div></div>
+      </div>
+    </section>
+
+    <!-- 5: Ausbildung -->
+    <section class="slide">
+      <div class="kicker">Ausbildung &amp; Sprachen</div>
+      <h2>Kontinuität – fachlich und persönlich</h2>
+      <div class="rule"></div>
+      <div class="edu">
+        <div>
+          <div class="edu-item"><div class="yr">03/2024 – 02/2025</div><b>Sprachkurs</b><span>Interkulturelle Bildung Hamburg e.V.</span><br><span class="cert">Zertifikat B2</span></div>
+          <div class="edu-item"><div class="yr">01/2023 – 11/2023</div><b>Integrationskurs</b><span>FITS job konzepte GmbH Hamburg</span><br><span class="cert">Zertifikat B1</span></div>
+        </div>
+        <div>
+          <div class="lang"><b>Deutsch</b><span>B2</span></div>
+          <div class="lang"><b>Türkisch</b><span>B2</span></div>
+          <div class="lang"><b>Englisch</b><span>B1</span></div>
+          <div class="native">Muttersprache: <b>Usbekisch</b> · <b>Persisch</b></div>
+          <div class="edu-item" style="margin-top:18px"><div class="yr">Weitere Qualifikation</div><b>Führerschein Klasse B</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6: Kontakt -->
+    <section class="slide">
+      <div class="end">
+        <div>
+          <div class="kicker">Kontakt</div>
+          <div class="big">Vielen Dank für Ihre Aufmerksamkeit.</div>
+          <div class="rule" style="margin:18px auto"></div>
+          <a class="mail" href="mailto:jawid.moradi13@gmail.com">✉ jawid.moradi13@gmail.com</a>
+          <a class="tel" href="tel:015757794766">0157 57794766</a>
+          <div class="thanks">Jawid Moradi · Fachinformatiker für Systemintegration</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="hint">← → zum Blättern · Leertaste · Drucken/als PDF speichern mit Strg+P</div>
+<div class="controls">
+  <button id="prev" aria-label="Zurück">←</button>
+  <div class="dots" id="dots"></div>
+  <span class="count" id="count">1 / 6</span>
+  <button id="next" aria-label="Weiter">→</button>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
+  var count=document.getElementById('count'),dots=document.getElementById('dots');
+  slides.forEach(function(_,n){var d=document.createElement('i');d.addEventListener('click',function(){go(n);});dots.appendChild(d);});
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i);});
+    [].slice.call(dots.children).forEach(function(d,k){d.classList.toggle('on',k===i);});
+    count.textContent=(i+1)+' / '+slides.length;
+  }
+  document.getElementById('prev').addEventListener('click',function(){go(i-1);});
+  document.getElementById('next').addEventListener('click',function(){go(i+1);});
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(i+1);}
+    if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(i-1);}
+    if(e.key==='Home')go(0);
+    if(e.key==='End')go(slides.length-1);
+  });
+  go(0);
+
+  var pic=document.querySelector('#photo img');
+  if(pic){var show=function(){pic.parentElement.classList.add('has-photo');};pic.addEventListener('load',show);if(pic.complete&&pic.naturalWidth>0)show();}
+})();
+</script>
+</body>
+</html>
