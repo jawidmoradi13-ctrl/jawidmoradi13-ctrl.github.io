@@ -1,225 +1,192 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="IT-Profil von Jawid – Fachinformatiker für Systemintegration, Umschulung mit Praxiseinsatz bei der Damago GmbH.">
-<title>Jawid · IT-Profil – Systemintegration</title>
+<meta name="description" content="Jawid Moradi – Fachinformatiker für Systemintegration. Schwerpunkte: Netzwerke, IT-Sicherheit, Linux, SQL, Cisco und Backup & Recovery.">
+<title>Jawid Moradi · Fachinformatiker für Systemintegration</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0d1b2a;
-  --ink-2:#1b2b41;
-  --muted:#5d6b82;
-  --line:#dbe3ee;
-  --paper:#f4f7fb;
-  --white:#ffffff;
-  --blue:#2563eb;
-  --blue-dark:#1d4ed8;
-  --teal:#0d9488;
-  --amber:#d97706;
-  --soft-blue:#eaf1ff;
-  --shadow:0 20px 50px rgba(13,27,42,.08);
-  --shadow-lg:0 30px 70px rgba(13,27,42,.14);
-  --mono:'IBM Plex Mono',monospace;
+  --bg:#070b14;
+  --bg-2:#0c1424;
+  --paper:#f5f7fb;
+  --card:#ffffff;
+  --ink:#101828;
+  --ink-2:#344054;
+  --muted:#667085;
+  --line:#e4e9f2;
+  --blue:#3b6bf5;
+  --cyan:#22b8cf;
+  --violet:#7c5cff;
+  --green:#12b886;
+  --mono:'JetBrains Mono',monospace;
   --sans:'Manrope',sans-serif;
+  --shadow:0 16px 40px rgba(16,24,40,.07);
+  --shadow-lg:0 30px 80px rgba(16,24,40,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:26px}
-body{
-  font-family:var(--sans);background:var(--paper);color:var(--ink);
-  line-height:1.7;-webkit-font-smoothing:antialiased;
-}
-a{color:var(--blue);text-decoration:none}
-::selection{background:rgba(37,99,235,.2)}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(59,107,245,.22)}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
-/* ---------- Top bar ---------- */
-.topbar{
-  background:var(--ink);color:#fff;padding:10px 0;font-family:var(--mono);
-  font-size:.78rem;letter-spacing:.5px;position:sticky;top:0;z-index:50;
-}
-.topbar .wrap{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
-.topbar .status{display:flex;align-items:center;gap:9px;color:#a9c6ff}
-.topbar .status i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 10px #34d399;animation:blink 2s infinite}
-@keyframes blink{50%{opacity:.4}}
-.topbar a{color:#a9c6ff}
-.topbar a:hover{color:#fff}
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,11,20,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav .wrap{max-width:1120px;margin:0 auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;color:#fff;font-weight:800;letter-spacing:-.02em}
+.brand .logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-size:.82rem;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--blue),var(--violet));box-shadow:0 8px 22px rgba(59,107,245,.4)}
+.brand small{display:block;font-size:.62rem;font-weight:600;color:#8fa3c8;letter-spacing:.1em;text-transform:uppercase;line-height:1}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:#a9b7d0;font-size:.84rem;font-weight:600;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-links .nav-cta{padding:9px 17px;border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff}
+.nav-links .nav-cta:hover{border-color:var(--blue);background:rgba(59,107,245,.16)}
+.burger{display:none;background:none;border:1px solid rgba(255,255,255,.2);border-radius:9px;color:#fff;padding:7px 11px;font-size:1.1rem;cursor:pointer}
 
-/* ---------- Layout ---------- */
-.layout{max-width:1180px;margin:0 auto;padding:34px 24px 70px;display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start}
+/* HERO */
+.hero{position:relative;overflow:hidden;background:var(--bg);color:#fff}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(650px 420px at 78% 18%,rgba(59,107,245,.24),transparent 70%),radial-gradient(520px 380px at 12% 80%,rgba(34,184,207,.14),transparent 70%)}
+.hero::after{content:'';position:absolute;inset:0;opacity:.35;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+.hero .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:82px 24px 92px;display:grid;grid-template-columns:1.35fr .85fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:#b9c8e4}
+.badge i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.06;font-weight:800;letter-spacing:-.045em;margin:22px 0 14px}
+.hero h1 span{background:linear-gradient(100deg,#7ea6ff,#22b8cf 55%,#a48bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .role{font-family:var(--mono);font-size:clamp(.9rem,2vw,1.06rem);color:#9fc1ff;letter-spacing:.02em}
+.hero .lead{max-width:610px;color:#b9c6dc;font-size:1.02rem;margin-top:24px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:700;font-size:.9rem;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:linear-gradient(120deg,var(--blue),var(--violet));color:#fff;box-shadow:0 14px 30px rgba(59,107,245,.35)}
+.btn-primary:hover{box-shadow:0 20px 40px rgba(59,107,245,.5)}
+.btn-ghost{border:1px solid rgba(255,255,255,.22);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.hero-card{position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:28px;backdrop-filter:blur(12px);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.hero-card::before{content:'';position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(140deg,rgba(59,107,245,.7),transparent 45%,rgba(34,184,207,.5));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.hero-card .hc-top{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.72rem;color:#8fa3c8;letter-spacing:.08em;text-transform:uppercase}
+.hero-card h2{font-size:1.1rem;margin:16px 0 18px;font-weight:700}
+.chip-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.chip-cloud span{font-family:var(--mono);font-size:.76rem;padding:7px 11px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);color:#d7e2f5}
+.hero-card .hc-foot{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:.82rem;color:#9fb0ca}
+.hero-card .hc-foot b{color:#fff;font-weight:700}
 
-/* ---------- Sidebar card ---------- */
-.sidebar{position:sticky;top:70px;display:grid;gap:18px}
-.profile-card{
-  background:var(--white);border:1px solid var(--line);border-radius:20px;
-  overflow:hidden;box-shadow:var(--shadow);
-}
-.profile-top{
-  padding:34px 26px 28px;text-align:center;
-  background:linear-gradient(150deg,#e9f0ff 0%,#f8fbff 55%,#e7f6f4 100%);
-  border-bottom:1px solid var(--line);position:relative;overflow:hidden;
-}
-.profile-top::before{
-  content:'';position:absolute;width:200px;height:200px;border-radius:50%;
-  border:1px solid rgba(37,99,235,.13);top:-110px;left:-70px;
-}
-.profile-top::after{
-  content:'';position:absolute;width:160px;height:160px;border-radius:50%;
-  border:1px solid rgba(13,148,136,.15);bottom:-100px;right:-60px;
-}
-.avatar{
-  width:96px;height:96px;margin:0 auto 16px;border-radius:22px;
-  background:linear-gradient(140deg,var(--blue),#4f46e5);
-  color:#fff;font-family:var(--mono);font-weight:600;font-size:2.3rem;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 14px 30px rgba(37,99,235,.35);position:relative;
-}
-.avatar::after{
-  content:'';position:absolute;right:-4px;bottom:-4px;width:18px;height:18px;
-  border-radius:50%;background:#34d399;border:4px solid #fff;
-}
-.profile-top h1{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
-.profile-top .role{color:var(--blue);font-weight:700;font-size:.95rem;margin-top:3px}
-.profile-top .place{color:var(--muted);font-size:.86rem;margin-top:5px}
-.profile-body{padding:22px 24px 26px}
-.info-list{list-style:none;display:grid;gap:14px}
-.info-list li{display:grid;grid-template-columns:22px 1fr;gap:11px;align-items:start;font-size:.9rem}
-.info-list .ic{width:22px;height:22px;border-radius:7px;background:var(--soft-blue);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;font-family:var(--mono)}
-.info-list b{display:block;font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:700}
-.info-list span{color:var(--ink-2);font-weight:600;word-break:break-word}
-.profile-card .actions{display:grid;gap:9px;padding:0 24px 26px}
-.mini-btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:11px 14px;border-radius:11px;font-size:.88rem;font-weight:700;
-  background:var(--ink);color:#fff;transition:transform .3s,background .3s,box-shadow .3s;
-}
-.mini-btn:hover{transform:translateY(-2px);background:var(--blue);box-shadow:0 10px 22px rgba(37,99,235,.3)}
-.mini-btn.alt{background:var(--soft-blue);color:var(--blue)}
-.mini-btn.alt:hover{background:#dbe7ff;box-shadow:none}
+/* TICKER */
+.ticker{overflow:hidden;background:var(--bg-2);border-block:1px solid rgba(255,255,255,.06);padding:13px 0}
+.ticker-track{display:flex;gap:38px;width:max-content;animation:scroll 28s linear infinite}
+.ticker-track span{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;color:#7f92b4;text-transform:uppercase;white-space:nowrap}
+.ticker-track span::before{content:'◆';color:var(--blue);margin-right:14px;font-size:.6rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
 
-.side-note{
-  background:linear-gradient(140deg,var(--ink),var(--ink-2));color:#fff;
-  border-radius:20px;padding:24px;box-shadow:var(--shadow);
-}
-.side-note .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;color:#7dd3fc;text-transform:uppercase}
-.side-note p{font-size:.92rem;color:#c7d5e8;margin-top:10px}
-.side-note .quote{font-family:var(--mono);color:#fff;font-size:.9rem;margin-top:16px;padding-left:12px;border-left:2px solid var(--teal)}
+/* SECTIONS */
+.section{padding:86px 24px}
+.section .wrap{max-width:1120px;margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.section h2{font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.035em;line-height:1.15;margin:10px 0 12px;font-weight:800}
+.section .sub{color:var(--muted);max-width:640px;font-size:1rem}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:38px;flex-wrap:wrap}
+.head .line-num{font-family:var(--mono);font-size:.8rem;color:#a9b4c6;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:#fff}
 
-/* ---------- Main ---------- */
-.main{display:grid;gap:22px}
-.section{
-  background:var(--white);border:1px solid var(--line);border-radius:20px;
-  padding:34px 36px;box-shadow:var(--shadow);
-}
-.section-head{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.section-head .nr{
-  font-family:var(--mono);font-size:.75rem;font-weight:600;color:var(--blue);
-  background:var(--soft-blue);padding:5px 9px;border-radius:7px;
-}
-.section-head h2{font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
-.section-head .line{flex:1;height:1px;background:var(--line)}
+/* PROFILE */
+.profile-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:24px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px;box-shadow:var(--shadow)}
+.panel p{color:var(--ink-2);font-size:1.03rem}
+.panel p+p{margin-top:14px}
+.quote{margin-top:26px;padding:18px 22px;border-left:3px solid var(--blue);background:linear-gradient(90deg,#eef3ff,transparent);border-radius:0 12px 12px 0;font-weight:700;color:var(--ink)}
+.quote small{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:5px}
+.fact-grid{display:grid;gap:14px}
+.fact{background:linear-gradient(145deg,var(--ink),#1b2b49);color:#fff;border-radius:18px;padding:22px;position:relative;overflow:hidden}
+.fact::after{content:'';position:absolute;width:110px;height:110px;border-radius:50%;border:1px solid rgba(255,255,255,.09);right:-45px;top:-45px}
+.fact b{display:block;font-family:var(--mono);font-size:1.6rem;line-height:1.1;color:#8fb6ff}
+.fact span{font-size:.84rem;color:#bfcde4}
 
-.intro{font-size:1.06rem;color:var(--ink-2)}
-.intro strong{color:var(--blue)}
-.intro p+p{margin-top:12px;color:var(--muted);font-size:.98rem}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.skill-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s,border-color .3s}
+.skill-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:#bfd0ff}
+.skill-card .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-family:var(--mono);font-size:.9rem;font-weight:600;color:#fff;margin-bottom:16px}
+.skill-card:nth-child(1) .ic{background:linear-gradient(135deg,var(--blue),#6d8dff)}
+.skill-card:nth-child(2) .ic{background:linear-gradient(135deg,var(--cyan),#22a7cf)}
+.skill-card:nth-child(3) .ic{background:linear-gradient(135deg,var(--violet),#a78bfa)}
+.skill-card:nth-child(4) .ic{background:linear-gradient(135deg,var(--green),#4fd1a5)}
+.skill-card h3{font-size:1.08rem;font-weight:800;margin-bottom:6px}
+.skill-card .desc{font-size:.83rem;color:var(--muted);margin-bottom:16px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags span{font-size:.78rem;font-weight:600;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);padding:6px 11px;border-radius:8px}
 
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:24px}
-.fact{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;transition:transform .3s,border-color .3s}
-.fact:hover{transform:translateY(-4px);border-color:#b6cbff}
-.fact b{display:block;font-family:var(--mono);font-size:1.45rem;font-weight:600;color:var(--blue)}
-.fact span{font-size:.8rem;color:var(--muted);font-weight:600}
-
-/* Timeline */
-.timeline{list-style:none;position:relative}
-.timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:8px;width:2px;background:var(--line)}
-.timeline li{position:relative;padding:0 0 26px 34px}
+/* TIMELINE */
+.timeline{list-style:none;position:relative;margin-left:6px}
+.timeline::before{content:'';position:absolute;left:9px;top:8px;bottom:10px;width:2px;background:linear-gradient(var(--blue),rgba(34,184,207,.25))}
+.timeline li{position:relative;padding:0 0 34px 42px}
 .timeline li:last-child{padding-bottom:0}
-.timeline li::before{
-  content:'';position:absolute;left:1px;top:6px;width:14px;height:14px;border-radius:50%;
-  background:#fff;border:4px solid var(--blue);z-index:1;
-}
-.timeline li.green::before{border-color:var(--teal)}
-.timeline li.amber::before{border-color:var(--amber)}
-.tl-date{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--blue);letter-spacing:.6px;text-transform:uppercase}
-.timeline li.green .tl-date{color:var(--teal)}
-.timeline li.amber .tl-date{color:var(--amber)}
-.tl-title{font-weight:800;font-size:1.05rem;margin:2px 0 3px}
+.timeline li::before{content:'';position:absolute;left:2px;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--blue);z-index:1;box-shadow:0 0 0 5px #eef3ff}
+.timeline li:nth-child(2)::before{border-color:var(--cyan);box-shadow:0 0 0 5px #e9fafd}
+.timeline li:nth-child(3)::before,.timeline li:nth-child(4)::before{border-color:#98a5bb;box-shadow:0 0 0 5px #f1f4f9}
+.tl-date{font-family:var(--mono);font-size:.76rem;font-weight:600;letter-spacing:.06em;color:var(--blue)}
+.tl-title{font-size:1.14rem;font-weight:800;margin:5px 0 2px}
 .tl-org{color:var(--muted);font-weight:600;font-size:.9rem}
-.tl-desc{color:var(--ink-2);font-size:.94rem;margin-top:7px}
-.tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.tl-tags span{font-size:.74rem;padding:4px 10px;border-radius:99px;background:var(--soft-blue);color:var(--blue);font-weight:700}
+.tl-desc{color:var(--ink-2);font-size:.94rem;margin-top:9px}
+.tl-desc ul{list-style:none;display:grid;gap:5px;margin-top:8px}
+.tl-desc li{position:relative;padding-left:16px}
+.tl-desc li::before{content:'→';position:absolute;left:0;color:var(--blue);font-weight:700}
 
-/* Skills */
-.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.skill-box{border:1px solid var(--line);border-radius:15px;padding:20px;background:linear-gradient(160deg,#fff,#f9fbff)}
-.skill-box h3{font-size:.98rem;font-weight:800;display:flex;align-items:center;gap:9px;margin-bottom:12px}
-.skill-box h3 em{width:30px;height:30px;border-radius:9px;background:var(--soft-blue);color:var(--blue);display:flex;align-items:center;justify-content:center;font-style:normal;font-family:var(--mono);font-size:.8rem}
-.skill-box ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
-.skill-box li{font-size:.82rem;font-weight:600;color:var(--ink-2);border:1px solid var(--line);background:#fff;padding:5px 11px;border-radius:8px}
-.level{display:flex;align-items:center;gap:3px;margin-top:15px}
-.level i{height:6px;flex:1;border-radius:99px;background:var(--line)}
-.level i.on{background:linear-gradient(90deg,var(--blue),#60a5fa)}
-.level small{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-left:6px}
+/* EDU + LANGS */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.edu-item{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff;margin-bottom:14px}
+.edu-item:last-child{margin-bottom:0}
+.edu-item .yr{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--cyan)}
+.edu-item h3{font-size:1.02rem;font-weight:800;margin:6px 0 3px}
+.edu-item p{font-size:.88rem;color:var(--muted)}
+.cert{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--green);background:#eafbf5;border:1px solid #c6f0e0;padding:5px 10px;border-radius:7px}
+.lang-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+.lang-row:last-child{margin-bottom:0}
+.lang-row .nm{font-weight:700;font-size:.94rem}
+.lang-row .lv{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--muted)}
+.bar{height:7px;border-radius:99px;background:#e8edf6;overflow:hidden;margin-top:7px}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.native{font-size:.82rem;color:var(--muted);margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.native b{color:var(--ink)}
 
-/* Projects list */
-.project-list{display:grid;gap:12px}
-.project-row{
-  display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;
-  border:1px solid var(--line);border-radius:14px;padding:16px 18px;
-  transition:transform .3s,box-shadow .3s,border-color .3s;
-}
-.project-row:hover{transform:translateX(4px);border-color:#b6cbff;box-shadow:0 12px 30px rgba(37,99,235,.09)}
-.project-row .ico{
-  width:44px;height:44px;border-radius:12px;background:var(--ink);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:.9rem;
-}
-.project-row:nth-child(even) .ico{background:var(--teal)}
-.project-row h3{font-size:1rem;font-weight:800}
-.project-row p{font-size:.88rem;color:var(--muted)}
-.project-row a{
-  font-size:.82rem;font-weight:700;padding:8px 15px;border-radius:9px;
-  background:var(--soft-blue);white-space:nowrap;
-}
-.project-row a:hover{background:var(--blue);color:#fff}
+/* CONTACT */
+.contact{padding:0 24px 90px}
+.contact .wrap{max-width:1120px;margin:0 auto}
+.contact-card{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a1222,#122552);color:#fff;border-radius:26px;padding:56px;text-align:center}
+.contact-card::before{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(59,107,245,.4),transparent 70%);top:-240px;left:50%;transform:translateX(-50%)}
+.contact-card>*{position:relative;z-index:1}
+.contact-card h2{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.035em;font-weight:800}
+.contact-card p{color:#b8c7e0;max-width:560px;margin:12px auto 28px}
+.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.contact-links a{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:700;font-size:.9rem;background:#fff;color:var(--ink);transition:transform .25s}
+.contact-links a:hover{transform:translateY(-3px)}
+.contact-links a.primary{background:linear-gradient(120deg,var(--blue),var(--violet));color:#fff;box-shadow:0 14px 30px rgba(59,107,245,.4)}
 
-/* Contact */
-.contact-box{
-  background:linear-gradient(140deg,var(--ink),#16345c);color:#fff;
-  border-radius:20px;padding:40px;text-align:center;box-shadow:var(--shadow-lg);
-}
-.contact-box h2{font-size:1.8rem;font-weight:800}
-.contact-box p{color:#c7d5e8;max-width:520px;margin:10px auto 24px}
-.contact-box .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.contact-box .row a{
-  padding:12px 22px;border-radius:11px;font-weight:700;font-size:.92rem;
-  background:#fff;color:var(--ink);transition:transform .3s;
-}
-.contact-box .row a:hover{transform:translateY(-3px)}
-.contact-box .row a.blue{background:var(--blue);color:#fff}
+/* FOOTER */
+footer{background:var(--bg);color:#7e8fab;text-align:center;padding:28px 24px;font-size:.83rem;border-top:1px solid rgba(255,255,255,.06)}
+footer a{color:#9fb0ca;margin:0 6px}
+footer a:hover{color:#fff}
 
-/* Footer */
-footer{text-align:center;padding:26px 24px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);background:#fff}
-footer a{color:var(--muted)}
-footer a:hover{color:var(--blue)}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 
 @media(max-width:900px){
-  .layout{grid-template-columns:1fr;padding:22px 16px 50px}
-  .sidebar{position:static}
-  .section{padding:26px 22px}
-  .project-row{grid-template-columns:40px 1fr;gap:12px}
-  .project-row a{grid-column:2;width:max-content}
+  .hero .wrap{grid-template-columns:1fr;padding-top:60px;padding-bottom:70px;gap:42px}
+  .profile-grid,.duo{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;background:#0b1322;padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav-links.open{display:flex}
+  .burger{display:block}
 }
 @media(max-width:560px){
-  .topbar .wrap{font-size:.7rem}
-  .avatar{width:80px;height:80px;font-size:2rem}
-  .contact-box{padding:30px 20px}
+  .section{padding:64px 18px}
+  .panel{padding:24px}
+  .contact{padding:0 18px 70px}
+  .contact-card{padding:38px 22px}
+  .hero-card{padding:22px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -228,175 +195,223 @@ footer a:hover{color:var(--blue)}
 }
 @media print{
   body{background:#fff}
-  .topbar,.profile-card .actions,.to-top{display:none}
-  .layout{display:block;max-width:100%;padding:0}
-  .sidebar{position:static;margin-bottom:20px}
-  .section,.profile-card,.side-note{box-shadow:none;break-inside:avoid}
+  .nav,.hero-actions,.contact-links,.ticker,footer{display:none}
+  .hero,.contact-card{background:#fff!important;color:var(--ink)!important;padding:24px 0}
+  .hero h1 span{-webkit-text-fill-color:var(--ink);color:var(--ink)}
+  .hero .role,.hero .lead,.hero-card .hc-foot,.contact-card p{color:var(--ink-2)!important}
+  .hero-card,.contact-card{border:1px solid var(--line);box-shadow:none;background:#fff!important}
+  .hero-card h2,.hero-card .hc-foot b,.chip-cloud span{color:var(--ink)!important}
+  .chip-cloud span,.badge{border-color:var(--line);background:#f5f7fb!important;color:var(--ink)!important}
+  .section{padding:26px 0}
+  .panel,.skill-card,.edu-item{box-shadow:none}
   .reveal{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
 <body>
 
-<div class="topbar">
+<nav class="nav">
   <div class="wrap">
-    <span class="status"><i></i> IT-Profil · Jawid · Stand 2026</span>
-    <span><a href="mailto:jawid.moradi13@gmail.com">jawid.moradi13@gmail.com</a> · <a href="portfolio.html">Zum Portfolio →</a></span>
+    <a class="brand" href="#top"><span class="logo">JM</span><span>Jawid Moradi<small>Systemintegration</small></span></a>
+    <button class="burger" aria-label="Menü" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-links">
+      <a href="#profil">Profil</a>
+      <a href="#kompetenzen">Kompetenzen</a>
+      <a href="#werdegang">Werdegang</a>
+      <a href="#ausbildung">Ausbildung</a>
+      <a href="#sprachen">Sprachen</a>
+      <a class="nav-cta" href="mailto:jawid.moradi13@gmail.com">Kontakt ↗</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="badge"><i></i> Umschulung seit 02/2026 · Damago GmbH</span>
+      <h1>Jawid <span>Moradi</span></h1>
+      <div class="role">Fachinformatiker für Systemintegration</div>
+      <p class="lead">Engagierter Teilnehmer einer Umschulung zum Fachinformatiker für Systemintegration. Mit großem Interesse an modernen Netzwerken, IT-Sicherheit und stabiler IT-Infrastruktur baue ich mein technisches Fundament zielstrebig aus.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:jawid.moradi13@gmail.com">✉ Kontakt aufnehmen</a>
+        <a class="btn btn-ghost" href="#" onclick="window.print();return false;">⬇ Lebenslauf drucken</a>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="hc-top"><span>Tech Stack</span><span>2026</span></div>
+      <h2>Technisches Fundament</h2>
+      <div class="chip-cloud">
+        <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span>
+        <span>PowerShell</span><span>Python</span><span>SQL</span>
+        <span>Excel</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span>
+        <span>Backup &amp; Recovery</span>
+      </div>
+      <div class="hc-foot"><span>Fokus</span><b>Netzwerke · Sicherheit · Infrastruktur</b></div>
+    </aside>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span><span>PowerShell</span><span>Python</span><span>SQL</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span><span>Backup &amp; Recovery</span><span>Excel</span>
+    <span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span><span>PowerShell</span><span>Python</span><span>SQL</span><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span><span>Backup &amp; Recovery</span><span>Excel</span>
   </div>
 </div>
 
-<div class="layout">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="profile-card reveal">
-      <div class="profile-top">
-        <div class="avatar">J</div>
-        <h1>Jawid</h1>
-        <div class="role">Fachinformatiker · Systemintegration</div>
-        <div class="place">Umschulung mit Praxis bei Damago GmbH</div>
+<section class="section" id="profil">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><div class="eyebrow">01 — Über mich</div><h2>Profil</h2><p class="sub">Zuverlässigkeit, Teamfähigkeit und starke Motivation – verbunden mit ersten praktischen Kenntnissen in SQL und Cisco.</p></div>
+      <span class="line-num">01 / 05</span>
+    </div>
+    <div class="profile-grid">
+      <div class="panel reveal">
+        <p>Durch erste praktische Kenntnisse in <strong>SQL</strong> und <strong>Cisco</strong> verbinde ich technisches Verständnis mit Zuverlässigkeit, ausgeprägter Teamfähigkeit und starker Motivation.</p>
+        <p>Seit <strong>Februar 2026</strong> absolviere ich die Umschulung zum Fachinformatiker für Systemintegration mit Praxiseinsatz bei der <strong>Damago GmbH</strong>. Dabei beschäftige ich mich schwerpunktmäßig mit Netzwerktechnik, IT-Sicherheit und stabiler IT-Infrastruktur.</p>
+        <div class="quote"><small>Arbeitsweise</small>„Störung → Analyse → Lösung → Dokumentation."</div>
       </div>
-      <div class="profile-body">
-        <ul class="info-list">
-          <li><span class="ic">↳</span><div><b>Status</b><span>Umschulung · seit 8 Monaten</span></div></li>
-          <li><span class="ic">◎</span><div><b>Betrieb</b><span>Damago GmbH</span></div></li>
-          <li><span class="ic">⌘</span><div><b>Fokus</b><span>Netzwerk · Windows · Linux · Support</span></div></li>
-          <li><span class="ic">✉</span><div><b>E-Mail</b><span>jawid.moradi13@gmail.com</span></div></li>
-          <li><span class="ic">⌂</span><div><b>Standort</b><span>Hamburg / Deutschland</span></div></li>
-        </ul>
-      </div>
-      <div class="actions">
-        <a class="mini-btn" href="mailto:jawid.moradi13@gmail.com">✉ Kontakt aufnehmen</a>
-        <a class="mini-btn alt" href="portfolio.html">Projekte ansehen</a>
-        <a class="mini-btn alt" href="#" onclick="window.print();return false;">🖨 Profil drucken</a>
+      <div class="fact-grid reveal">
+        <div class="fact"><b>02/2026</b><span>Start der Umschulung</span></div>
+        <div class="fact"><b>10+</b><span>Technische Grundlagen</span></div>
+        <div class="fact"><b>4</b><span>Sprachen</span></div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="side-note reveal">
-      <div class="tag">Kurzprofil</div>
-      <p>IT-begeistert, strukturiert und lernbereit. Ich verbinde theoretisches Wissen aus der Umschulung mit echter Praxis bei der Damago GmbH.</p>
-      <div class="quote">„Störung → Analyse → Lösung → Dokumentation."</div>
+<section class="section" id="kompetenzen" style="background:#eef2f9">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><div class="eyebrow">02 — Was ich kann</div><h2>Kompetenzen</h2><p class="sub">Mein aktuelles Kompetenzprofil – ehrlich eingeordnet, mit klarem Fokus auf Systemintegration.</p></div>
+      <span class="line-num">02 / 05</span>
     </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <section class="section reveal">
-      <div class="section-head"><span class="nr">01</span><h2>Über mich</h2><span class="line"></span></div>
-      <div class="intro">
-        <p>Hallo, ich bin <strong>Jawid</strong>. Ich absolviere eine Umschulung zum <strong>Fachinformatiker für Systemintegration</strong> und bin seit <strong>8 Monaten bei der Damago GmbH</strong> im Praxiseinsatz.</p>
-        <p>Dort unterstütze ich bei der Betreuung von IT-Systemen, im Anwendersupport und bei netzwerktechnischen Aufgaben. Parallel dazu baue ich mein Wissen in Windows, Linux, Azure und IT-Sicherheit aus. In eigenen Web- und Game-Projekten beweise ich, dass ich Aufgaben selbstständig von der Idee bis zur Umsetzung bringe.</p>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="ic">01</div>
+        <h3>Netzwerk &amp; Systeme</h3>
+        <p class="desc">Grundlagen in Netzwerktechnik und Linux</p>
+        <div class="tags"><span>Netzwerkgrundlagen</span><span>Cisco</span><span>Linux</span></div>
       </div>
-      <div class="facts">
-        <div class="fact"><b>8</b><span>Monate Damago GmbH</span></div>
-        <div class="fact"><b>4</b><span>IT-Kernbereiche</span></div>
-        <div class="fact"><b>10+</b><span>eigene Projekte</span></div>
-        <div class="fact"><b>2026</b><span>Berufseinstieg</span></div>
+      <div class="skill-card reveal">
+        <div class="ic">02</div>
+        <h3>Scripting &amp; Daten</h3>
+        <p class="desc">Erste praktische Kenntnisse</p>
+        <div class="tags"><span>Python</span><span>SQL</span><span>PowerShell</span><span>Office Excel</span></div>
       </div>
-    </section>
+      <div class="skill-card reveal">
+        <div class="ic">03</div>
+        <h3>Sicherheit &amp; Backup</h3>
+        <p class="desc">Fundament für stabile Infrastruktur</p>
+        <div class="tags"><span>IT-Sicherheit</span><span>Firewalls &amp; VPN</span><span>Backup &amp; Recovery</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="ic">04</div>
+        <h3>Arbeitsweise</h3>
+        <p class="desc">Strukturiert, zuverlässig, teamorientiert</p>
+        <div class="tags"><span>Troubleshooting</span><span>Dokumentation</span><span>Teamfähigkeit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="section reveal">
-      <div class="section-head"><span class="nr">02</span><h2>Werdegang</h2><span class="line"></span></div>
-      <ul class="timeline">
-        <li>
-          <div class="tl-date">Februar 2026 – heute · 8 Monate</div>
-          <div class="tl-title">Systemintegration / IT-Support</div>
-          <div class="tl-org">Damago GmbH · Umschulungsbetrieb</div>
-          <div class="tl-desc">Praxiseinsatz im Unternehmen: Betreuung der IT-Arbeitsplätze, Benutzerverwaltung, Netzwerk- und Systembetreuung, Störungsanalyse und Anwendersupport.</div>
-          <div class="tl-tags"><span>IT-Support</span><span>Netzwerk</span><span>Windows</span><span>Dokumentation</span></div>
-        </li>
-        <li class="green">
-          <div class="tl-date">2025 – 2026</div>
-          <div class="tl-title">Ausbildung zum Fachinformatiker für Systemintegration</div>
-          <div class="tl-org">Umschulung</div>
-          <div class="tl-desc">Theoretische Ausbildung in Netzwerktechnik, Windows- und Linux-Administration, IT-Sicherheit, Cloud-Grundlagen und Softwareentwicklung.</div>
-          <div class="tl-tags"><span>TCP/IP</span><span>Active Directory</span><span>Linux</span><span>Azure</span></div>
-        </li>
-        <li class="amber">
-          <div class="tl-date">Parallel</div>
-          <div class="tl-title">Eigene Web- &amp; Game-Projekte</div>
-          <div class="tl-org">Selbststudium / Portfolio</div>
-          <div class="tl-desc">Entwicklung mehrerer Browser-Games und Landingpages in HTML, CSS und JavaScript – von der Konzeption über das Testing bis zum Livegang.</div>
-          <div class="tl-tags"><span>HTML/CSS/JS</span><span>Debugging</span><span>Canvas</span></div>
-        </li>
-      </ul>
-    </section>
+<section class="section" id="werdegang">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><div class="eyebrow">03 — Erfahrung</div><h2>Werdegang</h2><p class="sub">Vom Schneider über den Barkeeper bis zur Systemintegration – ein Weg, der Disziplin und Kundenkontakt geprägt hat.</p></div>
+      <span class="line-num">03 / 05</span>
+    </div>
+    <ul class="timeline">
+      <li class="reveal">
+        <div class="tl-date">02/2026 – HEUTE</div>
+        <div class="tl-title">Fachinformatiker für Systemintegration</div>
+        <div class="tl-org">Damago GmbH · Umschulung mit Praxiseinsatz</div>
+        <div class="tl-desc">Umschulung zum Fachinformatiker für Systemintegration mit Praxis bei der Damago GmbH.</div>
+      </li>
+      <li class="reveal">
+        <div class="tl-date">03/2022 – 08/2022</div>
+        <div class="tl-title">Schneider</div>
+        <div class="tl-org">Erfahrung in der Türkei gesammelt</div>
+      </li>
+      <li class="reveal">
+        <div class="tl-date">02/2018 – 04/2020</div>
+        <div class="tl-title">Barkeeper</div>
+        <div class="tl-org">Bar Hamburg GmbH</div>
+        <div class="tl-desc">
+          <ul>
+            <li>Kasse bedienen &amp; abrechnen</li>
+            <li>Freundliche Betreuung und Beratung von Gästen</li>
+            <li>Einarbeitung und Anleitung neuer Mitarbeiter</li>
+          </ul>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="tl-date">09/2015 – 02/2018</div>
+        <div class="tl-title">Schneider</div>
+        <div class="tl-org">Faryab, Afghanistan</div>
+        <div class="tl-desc">
+          <ul>
+            <li>Betriebliche Ausbildung zum Schneider</li>
+            <li>Anfertigung verschiedener Kleidungsmodelle</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
 
-    <section class="section reveal">
-      <div class="section-head"><span class="nr">03</span><h2>IT-Kompetenzen</h2><span class="line"></span></div>
-      <div class="skill-grid">
-        <div class="skill-box">
-          <h3><em>01</em> Netzwerke</h3>
-          <ul><li>TCP/IP</li><li>DNS &amp; DHCP</li><li>VLAN</li><li>VPN</li><li>Firewall-Basics</li><li>Wireshark</li></ul>
-          <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><small>Fortgeschritten</small></div>
+<section class="section" id="ausbildung" style="background:#eef2f9">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><div class="eyebrow">04 — Lernen &amp; Zertifikate</div><h2>Ausbildung</h2><p class="sub">Sprachzertifikate und Integrationskurs als Grundlage für den beruflichen Einstieg.</p></div>
+      <span class="line-num">04 / 05</span>
+    </div>
+    <div class="duo">
+      <div class="reveal">
+        <div class="edu-item">
+          <div class="yr">03/2024 – 02/2025</div>
+          <h3>Sprachkurs</h3>
+          <p>Interkulturelle Bildung Hamburg e.V.</p>
+          <span class="cert">Zertifikat B2</span>
         </div>
-        <div class="skill-box">
-          <h3><em>02</em> Betriebssysteme</h3>
-          <ul><li>Windows 10/11</li><li>Windows Server</li><li>Active Directory</li><li>Linux (Ubuntu)</li><li>Bash</li><li>Berechtigungen</li></ul>
-          <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><small>Sicher</small></div>
-        </div>
-        <div class="skill-box">
-          <h3><em>03</em> Cloud &amp; M365</h3>
-          <ul><li>Microsoft 365</li><li>Azure Basics</li><li>Entra ID</li><li>OneDrive / SharePoint</li><li>IT-Sicherheit</li><li>Backup</li></ul>
-          <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><small>Grundlagen</small></div>
-        </div>
-        <div class="skill-box">
-          <h3><em>04</em> Development &amp; Support</h3>
-          <ul><li>HTML / CSS</li><li>JavaScript</li><li>Python (Basics)</li><li>Troubleshooting</li><li>Dokumentation</li><li>Git (Grundlagen)</li></ul>
-          <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><small>Stark</small></div>
+        <div class="edu-item">
+          <div class="yr">01/2023 – 11/2023</div>
+          <h3>Integrationskurs</h3>
+          <p>FITS job konzepte GmbH Hamburg</p>
+          <span class="cert">Zertifikat B1</span>
         </div>
       </div>
-    </section>
-
-    <section class="section reveal">
-      <div class="section-head"><span class="nr">04</span><h2>Ausgewählte Projekte</h2><span class="line"></span></div>
-      <div class="project-list">
-        <div class="project-row">
-          <div class="ico">01</div>
-          <div><h3>PUBG Mini – Battle Royale im Browser</h3><p>Vollständiges Game mit KI-Bots, Zone und Waffen in Vanilla JavaScript.</p></div>
-          <a href="PUBG-Mini.html" target="_blank">Spielen →</a>
-        </div>
-        <div class="project-row">
-          <div class="ico">02</div>
-          <div><h3>Neon Defense</h3><p>Tower-Defense mit Wellen, Türmen und Gegner-Logik.</p></div>
-          <a href="neon-defense.html" target="_blank">Spielen →</a>
-        </div>
-        <div class="project-row">
-          <div class="ico">03</div>
-          <div><h3>Snake Game</h3><p>Klassiker mit Highscore, sauberer Steuerung und responsivem Layout.</p></div>
-          <a href="snake-game/index.html" target="_blank">Spielen →</a>
-        </div>
-        <div class="project-row">
-          <div class="ico">04</div>
-          <div><h3>Landingpages (Rhythm &amp; Igloo)</h3><p>Moderne Webseiten mit Animationen und responsivem Design.</p></div>
-          <a href="rhythm-landing/index.html" target="_blank">Ansehen →</a>
-        </div>
+      <div class="panel reveal" id="sprachen">
+        <div class="eyebrow" style="margin-bottom:22px">Sprachen</div>
+        <div class="lang-row"><div><div class="nm">Deutsch</div><div class="bar"><i style="width:70%"></i></div></div><div class="lv">B2</div></div>
+        <div class="lang-row"><div><div class="nm">Türkisch</div><div class="bar"><i style="width:70%"></i></div></div><div class="lv">B2</div></div>
+        <div class="lang-row"><div><div class="nm">Englisch</div><div class="bar"><i style="width:50%"></i></div></div><div class="lv">B1</div></div>
+        <div class="native">Muttersprache: <b>Usbekisch</b> · <b>Persisch</b></div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="contact-box reveal">
-      <h2>IT-Profil von Jawid</h2>
-      <p>Du suchst Unterstützung im IT-Support, in der Systemadministration oder Netzwerktechnik? Ich freue mich über deine Nachricht und die Möglichkeit, mich vorzustellen.</p>
-      <div class="row">
-        <a class="blue" href="mailto:jawid.moradi13@gmail.com">✉ E-Mail schreiben</a>
-        <a href="portfolio.html">Zum Portfolio</a>
+<div class="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <h2>Lassen Sie uns in Kontakt bleiben</h2>
+      <p>Ob IT-Support, Systemadministration oder Netzwerktechnik – ich freue mich über Ihre Nachricht und die Möglichkeit, mich vorzustellen.</p>
+      <div class="contact-links">
+        <a class="primary" href="mailto:jawid.moradi13@gmail.com">✉ jawid.moradi13@gmail.com</a>
+        <a href="tel:015757794766">☎ 0157 57794766</a>
       </div>
-    </section>
-
-  </main>
+    </div>
+  </div>
 </div>
 
 <footer>
-  © 2026 Jawid · IT-Profil Systemintegration · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+  © 2026 Jawid Moradi · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
 </footer>
 
 <script>
 var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(en){
-    if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
-  });
-},{threshold:.1});
+  entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 </script>
 </body>

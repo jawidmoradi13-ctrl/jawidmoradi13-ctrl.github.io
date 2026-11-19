@@ -1,59 +1,43 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Impressum – Bar Hamburg</title>
+<title>Impressum · Jawid Moradi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1410; color: #f5ede2; line-height: 1.7; margin: 0; }
-  .wrap { max-width: 800px; margin: 0 auto; padding: 60px 24px; }
-  h1 { color: #c9a14a; font-size: 1.8rem; letter-spacing: 2px; text-transform: uppercase; }
-  h2 { color: #c9a14a; font-size: 1.2rem; margin-top: 36px; }
-  a { color: #c9a14a; }
-  p { color: #b0a28f; }
-  .back { display: inline-block; margin-bottom: 30px; text-decoration: none; }
+:root{--bg:#070b14;--ink:#101828;--muted:#667085;--line:#e4e9f2;--blue:#3b6bf5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:#f5f7fb;color:var(--ink);line-height:1.75}
+.top{background:var(--bg);padding:18px 24px}
+.top a{color:#fff;font-weight:700;text-decoration:none}
+.wrap{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:2rem;letter-spacing:-.03em}
+h2{font-size:1.1rem;margin:32px 0 8px}
+p{color:var(--ink);font-size:.95rem}
+.muted{color:var(--muted)}
+a{color:var(--blue)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px;margin-top:24px}
 </style>
 </head>
 <body>
+<div class="top"><a href="index.html">← Zurück zum Profil</a></div>
 <div class="wrap">
-  <a class="back" href="index.html">← Zurück zur Startseite</a>
   <h1>Impressum</h1>
-  <p>Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)</p>
-
-  <h2>Betreiber</h2>
-  <p>
-    <strong>Inhaber: [Bitte Namen eintragen]</strong><br>
-    Bar Hamburg<br>
-    Rautenbergstraße 6-8<br>
-    20000 Hamburg<br>
-    Deutschland
-  </p>
-
-  <h2>Kontakt</h2>
-  <p>
-    E-Mail: <a href="mailto:barhamburg@gmail.com">barhamburg@gmail.com</a>
-  </p>
-
-  <h2>Umsatzsteuer-ID</h2>
-  <p>USt-IdNr. gemäß § 27a UStG: [Bitte eintragen]</p>
-
-  <h2>Streitschlichtung</h2>
-  <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-  <a href="https://ec.europa.eu/consumers/odr" rel="noopener" target="_blank">https://ec.europa.eu/consumers/odr</a>.
-  Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-
-  <h2>Haftung für Inhalte</h2>
-  <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-  Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
-
-  <h2>Haftung für Links</h2>
-  <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben.
-  Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
-
-  <h2>Urheberrecht</h2>
-  <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
-  Beiträge Dritter sind als solche gekennzeichnet. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+  <p class="muted">Angaben gemäß § 5 DDG</p>
+  <div class="card">
+    <h2>Betreiber</h2>
+    <p>Jawid Moradi<br>Fachinformatiker für Systemintegration</p>
+    <h2>Kontakt</h2>
+    <p>E-Mail: <a href="mailto:jawid.moradi13@gmail.com">jawid.moradi13@gmail.com</a><br>Telefon: <a href="tel:015757794766">0157 57794766</a></p>
+    <h2>Haftung für Inhalte und Links</h2>
+    <p class="muted">Als Diensteanbieter bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Für Inhalte externer Links, auf die ich keinen Einfluss habe, ist jeweils der betreffende Anbieter verantwortlich.</p>
+    <h2>Urheberrecht</h2>
+    <p class="muted">Die Inhalte dieser Seite unterliegen dem deutschen Urheberrecht. Eine Verwendung außerhalb der gesetzlichen Grenzen bedarf meiner schriftlichen Zustimmung.</p>
+  </div>
 </div>
 </body>
 </html>
