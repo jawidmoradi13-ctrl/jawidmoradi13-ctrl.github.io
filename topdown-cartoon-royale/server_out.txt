@@ -1,1 +1,0 @@
-﻿Server lõuft: http://localhost:3000 | http://10.2.50.113:3000
