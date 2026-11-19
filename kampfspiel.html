@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Arena Kampf - 2 Spieler</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+  }
+  h1 { margin-bottom: 8px; font-size: 26px; letter-spacing: 2px; }
+  .info {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .info div { line-height: 1.6; }
+  .p1c { color: #4fc3f7; }
+  .p2c { color: #ff8a65; }
+  #arena {
+    background: #1b1b2f;
+    border: 3px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,.8);
+  }
+  #hud {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-top: 12px;
+    width: 800px;
+  }
+  .healthbox { flex: 1; }
+  .healthbox .name { font-size: 13px; margin-bottom: 4px; font-weight: bold; }
+  .bar {
+    height: 18px;
+    background: #333;
+    border-radius: 9px;
+    overflow: hidden;
+    border: 1px solid #555;
+  }
+  .bar .fill { height: 100%; transition: width .15s; }
+  #hp1 { background: linear-gradient(90deg, #0288d1, #4fc3f7); width: 100%; }
+  #hp2 { background: linear-gradient(90deg, #d84315, #ff8a65); width: 100%; float: right; }
+  #hp2wrap { transform: scaleX(-1); }
+  #msg { font-size: 15px; min-width: 170px; text-align: center; color: #ffd54f; }
+  #overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    z-index: 10;
+  }
+  #overlay h2 { font-size: 42px; }
+  #overlay p { color: #bbb; }
+  button {
+    background: #ffd54f;
+    color: #111;
+    border: none;
+    padding: 12px 34px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover { background: #ffe082; }
+</style>
+</head>
+<body>
+
+<h1>⚔ ARENA KAMPF</h1>
+
+<div class="info">
+  <div class="p1c"><b>SPIELER 1</b><br>WASD = Bewegen<br>Leertaste = Schießen</div>
+  <div class="p2c"><b>SPIELER 2</b><br>Pfeiltasten = Bewegen<br>Enter = Schießen</div>
+</div>
+
+<canvas id="arena" width="800" height="500"></canvas>
+
+<div id="hud">
+  <div class="healthbox">
+    <div class="name p1c">Spieler 1</div>
+    <div class="bar"><div class="fill" id="hp1"></div></div>
+  </div>
+  <div id="msg">Bereit?</div>
+  <div class="healthbox">
+    <div class="name p2c" style="text-align:right">Spieler 2</div>
+    <div class="bar"><div class="fill" id="hp2"></div></div>
+  </div>
+</div>
+
+<div id="overlay">
+  <h2>⚔ ARENA KAMPF</h2>
+  <p>Zwei Spieler, eine Arena, viele Kugeln.</p>
+  <button id="startBtn">SPIEL STARTEN</button>
+</div>
+
+<script>
+const canvas = document.getElementById('arena');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+const keys = {};
+addEventListener('keydown', e => {
+  keys[e.code] = true;
+  if (['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter'].includes(e.code)) e.preventDefault();
+});
+addEventListener('keyup', e => keys[e.code] = false);
+
+const WEAPONS = [
+  { name:'Pistole',   dmg:8,  speed:9,  rate:180, spread:0.03, size:4,  color:'#ffe082', recoil:1 },
+  { name:'Shotgun',   dmg:5,  speed:8,  rate:650, spread:0.22, size:3.5,color:'#ff8a65', recoil:3, pellets:5 },
+  { name:'Gewehr',    dmg:16, speed:15, rate:520, spread:0.01, size:3,  color:'#a5d6a7', recoil:4 },
+  { name:'Maschinen- gun', dmg:6, speed:11, rate:90, spread:0.09, size:3, color:'#ce93d8', recoil:1 },
+  { name:'Rakete',    dmg:35, speed:6,  rate:1400,spread:0.0,  size:7,  color:'#ef5350', recoil:6, rocket:true }
+];
+
+let players, bullets, particles, running = false, lastT = 0, msgTimer = 0;
+
+function makePlayer(x, color, colorDark, controls) {
+  return {
+    x, y:H/2, r:16, color, colorDark,
+    hp:100, angle:0, speed:3.4,
+    controls, lastShot:0, weapon:0, ammo:[30,8,12,60,4],
+    recoilX:0, recoilY:0, flash:0, hitFlash:0
+  };
+}
+
+function reset() {
+  players = [
+    makePlayer(120, '#4fc3f7', '#0288d1', {up:'KeyW',down:'KeyS',left:'KeyA',right:'KeyD',fire:'Space'}),
+    makePlayer(W-120,'#ff8a65','#d84315', {up:'ArrowUp',down:'ArrowDown',left:'ArrowLeft',right:'ArrowRight',fire:'Enter'})
+  ];
+  bullets = [];
+  particles = [];
+  updateHUD();
+  document.getElementById('msg').textContent = 'Los!';
+  msgTimer = 60;
+}
+
+function switchWeapon(p) {
+  p.weapon = (p.weapon + 1) % WEAPONS.length;
+  flash(p, WEAPONS[p.weapon].name);
+}
+
+function flash(p, text) {
+  const el = document.getElementById('msg');
+  el.textContent = (p===players[0]?'P1: ':'P2: ') + text;
+  msgTimer = 45;
+}
+
+function shoot(p, now) {
+  const w = WEAPONS[p.weapon];
+  if (now - p.lastShot < w.rate) return;
+  if (p.ammo[p.weapon] <= 0) { switchWeapon(p); return; }
+  p.lastShot = now;
+  p.ammo[p.weapon]--;
+  p.flash = 4;
+  const pellets = w.pellets || 1;
+  for (let i=0;i<pellets;i++) {
+    const a = p.angle + (Math.random()-0.5)*2*w.spread;
+    const ox = Math.cos(p.angle)*p.r, oy = Math.sin(p.angle)*p.r;
+    bullets.push({
+      x:p.x+ox, y:p.y+oy,
+      vx:Math.cos(a)*w.speed, vy:Math.sin(a)*w.speed,
+      dmg:w.dmg, owner:p, size:w.size, color:w.color,
+      rocket:w.rocket, life: w.rocket?120:70
+    });
+  }
+  p.recoilX -= Math.cos(p.angle)*w.recoil;
+  p.recoilY -= Math.sin(p.angle)*w.recoil;
+  if (p.ammo[p.weapon] <= 0) switchWeapon(p);
+}
+
+function spawnParticles(x,y,color,n,power=3) {
+  for (let i=0;i<n;i++) {
+    const a = Math.random()*Math.PI*2, s = Math.random()*power+1;
+    particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:25+Math.random()*20,color,size:2+Math.random()*3});
+  }
+}
+
+function update(dt, now) {
+  players.forEach((p,i) => {
+    const o = players[1-i];
+    let mx=0,my=0;
+    if (keys[p.controls.up]) my-=1;
+    if (keys[p.controls.down]) my+=1;
+    if (keys[p.controls.left]) mx-=1;
+    if (keys[p.controls.right]) mx+=1;
+    const len = Math.hypot(mx,my)||1;
+    p.x += mx/len*p.speed;
+    p.y += my/len*p.speed;
+    p.x = Math.max(p.r, Math.min(W-p.r, p.x));
+    p.y = Math.max(p.r, Math.min(H-p.r, p.y));
+
+    p.angle = Math.atan2(o.y-p.y, o.x-p.x);
+
+    if (keys[p.controls.fire]) shoot(p, now);
+    if (keys[p.controls.swap]) switchWeapon(p);
+
+    p.recoilX *= 0.8; p.recoilY *= 0.8;
+    if (p.flash>0) p.flash--;
+    if (p.hitFlash>0) p.hitFlash--;
+  });
+
+  for (let i=bullets.length-1;i>=0;i--) {
+    const b = bullets[i];
+    b.x += b.vx; b.y += b.vy; b.life--;
+    if (b.rocket && b.life%2===0) spawnParticles(b.x,b.y,'#ffab91',2,1);
+    let dead = b.life<=0 || b.x<0||b.x>W||b.y<0||b.y>H;
+    if (!dead) {
+      for (const p of players) {
+        if (p===b.owner) continue;
+        if (Math.hypot(p.x-b.x,p.y-b.y) < p.r+b.size) {
+          p.hp -= b.dmg;
+          p.hitFlash = 6;
+          spawnParticles(b.x,b.y,b.color,b.rocket?30:10,b.rocket?6:3);
+          if (b.rocket) {
+            // Splash auf beide
+            players.forEach(q => {
+              if (q!==b.owner && Math.hypot(q.x-b.x,q.y-b.y)<70) { if(q!==p) q.hp -= b.dmg*0.4; }
+            });
+            spawnParticles(b.x,b.y,'#ff7043',40,7);
+          }
+          dead = true;
+          updateHUD();
+          break;
+        }
+      }
+    }
+    if (dead) bullets.splice(i,1);
+  }
+
+  for (let i=particles.length-1;i>=0;i--) {
+    const pt = particles[i];
+    pt.x+=pt.vx; pt.y+=pt.vy; pt.vx*=0.94; pt.vy*=0.94; pt.life--;
+    if (pt.life<=0) particles.splice(i,1);
+  }
+
+  if (msgTimer>0) { msgTimer--; if(msgTimer===0) document.getElementById('msg').textContent='Kämpft!'; }
+
+  if (players[0].hp<=0 || players[1].hp<=0) endGame();
+}
+
+function endGame() {
+  running = false;
+  const winner = players[0].hp>0 ? players[1] : players[0];
+  const idx = winner===players[0] ? 1 : 2;
+  const ov = document.getElementById('overlay');
+  ov.style.display = 'flex';
+  ov.querySelector('h2').textContent = '🏆 Spieler ' + idx + ' gewinnt!';
+  ov.querySelector('p').textContent = 'Gekämpft wie ein Profi.';
+  document.getElementById('startBtn').textContent = 'NOCHMAL';
+}
+
+function updateHUD() {
+  document.getElementById('hp1').style.width = Math.max(0,players[0].hp) + '%';
+  document.getElementById('hp2').style.width = Math.max(0,players[1].hp) + '%';
+}
+
+function drawPlayer(p) {
+  ctx.save();
+  ctx.translate(p.x+p.recoilX, p.y+p.recoilY);
+  // Körperschatten
+  ctx.beginPath();
+  ctx.arc(2,3,p.r,0,Math.PI*2);
+  ctx.fillStyle='rgba(0,0,0,.4)';
+  ctx.fill();
+  // Körper
+  ctx.beginPath();
+  ctx.arc(0,0,p.r,0,Math.PI*2);
+  ctx.fillStyle = p.hitFlash>0 ? '#fff' : p.color;
+  ctx.fill();
+  ctx.lineWidth=3;
+  ctx.strokeStyle=p.colorDark;
+  ctx.stroke();
+  // Waffe
+  ctx.rotate(p.angle);
+  ctx.fillStyle='#222';
+  ctx.fillRect(p.r-4,-4,18,8);
+  ctx.fillStyle=WEAPONS[p.weapon].color;
+  ctx.fillRect(p.r+8,-3,6,6);
+  ctx.restore();
+  // Mündungsblitz
+  if (p.flash>0) {
+    ctx.save();
+    ctx.translate(p.x,p.y);
+    ctx.rotate(p.angle);
+    ctx.beginPath();
+    ctx.arc(p.r+22,0,8*p.flash/4,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,235,59,.9)';
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function draw() {
+  ctx.clearRect(0,0,W,H);
+  // Raster
+  ctx.strokeStyle='rgba(255,255,255,.05)';
+  ctx.lineWidth=1;
+  for (let x=0;x<W;x+=40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y=0;y<H;y+=40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+  players.forEach(drawPlayer);
+
+  bullets.forEach(b => {
+    if (b.rocket) {
+      ctx.save();
+      ctx.translate(b.x,b.y);
+      ctx.rotate(Math.atan2(b.vy,b.vx));
+      ctx.fillStyle='#b71c1c';
+      ctx.fillRect(-8,-4,16,8);
+      ctx.fillStyle='#ffcc80';
+      ctx.fillRect(-12,-3,5,6);
+      ctx.restore();
+    } else {
+      ctx.beginPath();
+      ctx.arc(b.x,b.y,b.size,0,Math.PI*2);
+      ctx.fillStyle=b.color;
+      ctx.fill();
+      ctx.shadowColor=b.color;
+      ctx.shadowBlur=8;
+      ctx.fill();
+      ctx.shadowBlur=0;
+    }
+  });
+
+  particles.forEach(pt => {
+    ctx.globalAlpha = Math.min(1, pt.life/25);
+    ctx.fillStyle = pt.color;
+    ctx.fillRect(pt.x, pt.y, pt.size, pt.size);
+    ctx.globalAlpha = 1;
+  });
+
+  // Waffenanzeige
+  ctx.fillStyle='rgba(255,255,255,.75)';
+  ctx.font='12px Segoe UI';
+  ctx.textAlign='left';
+  ctx.fillText(WEAPONS[players[0].weapon].name + ' [' + players[0].ammo[players[0].weapon] + ']  (Q wechseln)', 10, H-10);
+  ctx.textAlign='right';
+  ctx.fillText(WEAPONS[players[1].weapon].name + ' [' + players[1].ammo[players[1].weapon] + ']  (Shift wechseln)', W-10, H-10);
+}
+
+function loop(t) {
+  if (!running) return;
+  const dt = Math.min(32, t-lastT);
+  lastT = t;
+  update(dt, t);
+  draw();
+  requestAnimationFrame(loop);
+}
+
+// Waffenwechsel-Tasten
+addEventListener('keydown', e => {
+  if (!running) return;
+  if (e.code==='KeyQ') switchWeapon(players[0]);
+  if (e.code==='ShiftRight'||e.code==='ShiftLeft'||e.code==='NumpadEnter') switchWeapon(players[1]);
+});
+
+document.getElementById('startBtn').addEventListener('click', () => {
+  document.getElementById('overlay').style.display='none';
+  reset();
+  running = true;
+  lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+</script>
+</body>
+</html>

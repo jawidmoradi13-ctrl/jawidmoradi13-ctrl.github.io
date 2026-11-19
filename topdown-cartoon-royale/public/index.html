@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoon Royale - Top-Down Battle Royale</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="ui">
+        <div id="lobby-ui">
+            <h1>Cartoon Royale</h1>
+            <input id="name-input" placeholder="Dein Name" maxlength="12">
+            <button id="create-btn">Raum erstellen</button>
+            <div id="join-box">
+                <input id="code-input" placeholder="Raumcode (z.B. ABC123)">
+                <button id="join-btn">Beitreten</button>
+            </div>
+            <div id="room-info" style="display:none;">
+                <h2>Raum: <span id="room-code"></span></h2>
+                <p>Spieler: <span id="player-count">0</span></p>
+                <button id="start-btn">Spiel starten</button>
+                <p class="hint">Freunde im WLAN: http://<span id="ip"></span>:3000</p>
+            </div>
+            <p class="small">WASD = Bewegen • Maus = Zielen • Linksklick = Schießen • E = Aufheben</p>
+        </div>
+        <div id="hud" style="display:none;">
+            <div id="hp-bar"><div id="hp-fill"></div></div>
+            <div id="ammo">Munition: <span id="ammo-count">0</span></div>
+            <div id="kills">Kills: <span id="kills-count">0</span></div>
+            <div id="zone-info">Zone: <span id="zone-status">Wartet...</span></div>
+            <div id="leaderboard"></div>
+        </div>
+        <div id="game-over" style="display:none;">
+            <h1>Spiel vorbei</h1>
+            <p id="winner-text"></p>
+            <button onclick="location.reload()">Zurück zur Lobby</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
