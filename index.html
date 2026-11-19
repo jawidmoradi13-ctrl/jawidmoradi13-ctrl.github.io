@@ -141,9 +141,10 @@ a{color:inherit;text-decoration:none}
 .timeline li{position:relative;padding:0 0 34px 42px}
 .timeline li:last-child{padding-bottom:0}
 .timeline li::before{content:'';position:absolute;left:2px;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--blue);z-index:1;box-shadow:0 0 0 5px #eef3ff}
-.timeline li:nth-child(2)::before{border-color:var(--cyan);box-shadow:0 0 0 5px #e9fafd}
-.timeline li:nth-child(3)::before,.timeline li:nth-child(4)::before{border-color:#98a5bb;box-shadow:0 0 0 5px #f1f4f9}
-.tl-date{font-family:var(--mono);font-size:.76rem;font-weight:600;letter-spacing:.06em;color:var(--blue)}
+.timeline li::before{border-color:#98a5bb;box-shadow:0 0 0 5px #f1f4f9}
+.timeline li:last-child::before{border-color:var(--blue);box-shadow:0 0 0 5px #eef3ff}
+.tl-date{font-family:var(--mono);font-size:.76rem;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+.timeline li:last-child .tl-date{color:var(--blue)}
 .tl-title{font-size:1.14rem;font-weight:800;margin:5px 0 2px}
 .tl-org{color:var(--muted);font-weight:600;font-size:.9rem}
 .tl-desc{color:var(--ink-2);font-size:.94rem;margin-top:9px}
@@ -362,15 +363,20 @@ footer a:hover{color:#fff}
 <section class="section" id="werdegang">
   <div class="wrap">
     <div class="head reveal">
-      <div><div class="eyebrow">03 — Erfahrung</div><h2>Werdegang</h2><p class="sub">Vom Schneider über den Barkeeper bis zur Systemintegration – ein Weg, der Disziplin und Kundenkontakt geprägt hat.</p></div>
+      <div><div class="eyebrow">03 — Erfahrung</div><h2>Werdegang</h2><p class="sub">Vom Schneider in Afghanistan über die Erfahrung in der Türkei und den Barkeeper in Hamburg bis zur Umschulung zum Fachinformatiker.</p></div>
       <span class="line-num">03 / 05</span>
     </div>
     <ul class="timeline">
       <li class="reveal">
-        <div class="tl-date">02/2026 – HEUTE</div>
-        <div class="tl-title">Fachinformatiker für Systemintegration</div>
-        <div class="tl-org">Damago GmbH · Umschulung mit Praxiseinsatz</div>
-        <div class="tl-desc">Umschulung zum Fachinformatiker für Systemintegration mit Praxis bei der Damago GmbH.</div>
+        <div class="tl-date">09/2015 – 02/2018</div>
+        <div class="tl-title">Schneider</div>
+        <div class="tl-org">Faryab, Afghanistan</div>
+        <div class="tl-desc">
+          <ul>
+            <li>Betriebliche Ausbildung zum Schneider</li>
+            <li>Anfertigung verschiedener Kleidungsmodelle</li>
+          </ul>
+        </div>
       </li>
       <li class="reveal">
         <div class="tl-date">03/2022 – 08/2022</div>
@@ -390,15 +396,10 @@ footer a:hover{color:#fff}
         </div>
       </li>
       <li class="reveal">
-        <div class="tl-date">09/2015 – 02/2018</div>
-        <div class="tl-title">Schneider</div>
-        <div class="tl-org">Faryab, Afghanistan</div>
-        <div class="tl-desc">
-          <ul>
-            <li>Betriebliche Ausbildung zum Schneider</li>
-            <li>Anfertigung verschiedener Kleidungsmodelle</li>
-          </ul>
-        </div>
+        <div class="tl-date">02/2026 – HEUTE</div>
+        <div class="tl-title">Fachinformatiker für Systemintegration</div>
+        <div class="tl-org">Damago GmbH · Umschulung mit Praxiseinsatz</div>
+        <div class="tl-desc">Umschulung zum Fachinformatiker für Systemintegration mit Praxis bei der Damago GmbH.</div>
       </li>
     </ul>
   </div>
