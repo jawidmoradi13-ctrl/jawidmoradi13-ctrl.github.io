@@ -135,20 +135,23 @@ a{color:inherit;text-decoration:none}
 .tags{display:flex;flex-wrap:wrap;gap:7px}
 .tags span{font-size:.78rem;font-weight:600;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);padding:6px 11px;border-radius:8px}
 
-/* WERDEGANG – dauerhaft sichtbare Karten */
-.career-grid{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.career-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s}
-.career-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--blue),var(--cyan))}
-.career-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:#bfd0ff}
-.career-card:last-child{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f4f7ff)}
-.career-card:last-child::before{background:linear-gradient(var(--blue),var(--violet))}
-.tl-date{display:inline-block;font-family:var(--mono);font-size:.76rem;font-weight:600;letter-spacing:.06em;color:var(--blue);background:#eef3ff;border:1px solid #dbe6ff;padding:5px 10px;border-radius:7px}
-.tl-title{font-size:1.14rem;font-weight:800;margin:14px 0 3px}
-.tl-org{color:var(--muted);font-weight:600;font-size:.9rem}
-.tl-desc{color:var(--ink-2);font-size:.94rem;margin-top:10px}
-.tl-desc ul{list-style:none;display:grid;gap:5px;margin-top:8px}
-.tl-desc li{position:relative;padding-left:16px}
-.tl-desc li::before{content:'→';position:absolute;left:0;color:var(--blue);font-weight:700}
+/* BEWERBUNGSUNTERLAGEN – sichtbar mit dezenter Bewegung */
+.doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.doc-card{position:relative;overflow:hidden;display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s}
+.doc-card>*{position:relative;z-index:1}
+.doc-card::before{content:'';position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(120deg,rgba(59,107,245,.65),transparent 45%,rgba(34,184,207,.55));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.65;pointer-events:none}
+.doc-card::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:docSheen 7s ease-in-out infinite;pointer-events:none}
+.doc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:#bfd0ff}
+.doc-ic{flex:none;width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-family:var(--mono);font-size:1.1rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue),var(--violet));box-shadow:0 10px 24px rgba(59,107,245,.32);animation:docFloat 4.5s ease-in-out infinite}
+.doc-card:nth-child(2) .doc-ic{background:linear-gradient(135deg,var(--cyan),#22a7cf);box-shadow:0 10px 24px rgba(34,184,207,.3);animation-delay:-2s}
+@keyframes docFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-5px) rotate(3deg)}}
+@keyframes docSheen{0%,60%{left:-60%}100%{left:130%}}
+.doc-body{min-width:0}
+.doc-body h3{font-size:1.06rem;font-weight:800;margin:2px 0 5px}
+.doc-body p{font-size:.86rem;color:var(--muted);margin-bottom:14px}
+.doc-link{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;font-weight:700;color:var(--blue);border-bottom:1px solid rgba(59,107,245,.35);padding-bottom:2px;transition:gap .25s,color .25s}
+.doc-link:hover{gap:13px;color:var(--violet)}
+.doc-link+.doc-link{margin-left:14px}
 
 /* EDU + LANGS */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -205,8 +208,7 @@ footer a:hover{color:#fff}
 @media(max-width:900px){
   .hero .wrap{grid-template-columns:1fr;padding-top:60px;padding-bottom:70px;gap:42px}
   .profile-grid,.duo{grid-template-columns:1fr}
-  .skills-grid,.career-grid{grid-template-columns:1fr}
-  .career-card:last-child{grid-column:auto}
+  .skills-grid,.doc-grid{grid-template-columns:1fr}
   .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;background:#0b1322;padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
   .nav-links.open{display:flex}
   .burger{display:block}
@@ -234,7 +236,8 @@ footer a:hover{color:#fff}
   .hero-card h2,.hero-card .hc-foot b,.chip-cloud span{color:var(--ink)!important}
   .chip-cloud span,.badge{border-color:var(--line);background:#f5f7fb!important;color:var(--ink)!important}
   .section{padding:26px 0}
-  .panel,.skill-card,.edu-item,.career-card{box-shadow:none}
+  .panel,.skill-card,.edu-item,.doc-card{box-shadow:none}
+  .doc-card::after{display:none}
   .reveal{opacity:1!important;transform:none!important}
   .bar i{transform:none!important}
   .hero *{animation:none!important}
@@ -254,7 +257,7 @@ footer a:hover{color:#fff}
     <div class="nav-links">
       <a href="#profil">Profil</a>
       <a href="#kompetenzen">Kompetenzen</a>
-      <a href="#werdegang">Werdegang</a>
+      <a href="#unterlagen">Unterlagen</a>
       <a href="#ausbildung">Ausbildung</a>
       <a href="#sprachen">Sprachen</a>
       <a class="nav-cta" href="mailto:jawid.moradi13@gmail.com">Kontakt ↗</a>
@@ -278,7 +281,7 @@ footer a:hover{color:#fff}
       <div class="hero-actions">
         <a class="btn btn-primary" href="mailto:jawid.moradi13@gmail.com">✉ Kontakt aufnehmen</a>
         <a class="btn btn-ghost" href="bewerbung.html">▤ Bewerbungsfolie</a>
-        <a class="btn btn-ghost" href="Lebenslauf%20%E2%80%93%20A4.pdf" download>⬇ Lebenslauf als PDF</a>
+        <a class="btn btn-ghost" href="Lebenslauf1.pdf" download>⬇ Lebenslauf als PDF</a>
       </div>
     </div>
     <aside class="hero-card">
@@ -306,7 +309,7 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <div class="head reveal">
       <div><div class="eyebrow">01 — Über mich</div><h2>Profil</h2><p class="sub">Zuverlässigkeit, Teamfähigkeit und starke Motivation – verbunden mit ersten praktischen Kenntnissen in SQL und Cisco.</p></div>
-      <span class="line-num">01 / 05</span>
+      <span class="line-num">01 / 04</span>
     </div>
     <div class="profile-grid">
       <div class="panel reveal">
@@ -328,7 +331,7 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <div class="head reveal">
       <div><div class="eyebrow">02 — Was ich kann</div><h2>Kompetenzen</h2><p class="sub">Meine bisherigen Grundlagen – ehrlich eingeordnet und Tag für Tag im Aufbau.</p></div>
-      <span class="line-num">02 / 05</span>
+      <span class="line-num">02 / 04</span>
     </div>
     <div class="skills-grid">
       <div class="skill-card reveal">
@@ -359,48 +362,31 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="section" id="werdegang">
+<section class="section" id="unterlagen" style="background:#eef2f9">
   <div class="wrap">
     <div class="head">
-      <div><div class="eyebrow">03 — Erfahrung</div><h2>Werdegang</h2><p class="sub">Vom Schneider in Afghanistan über die Erfahrung in der Türkei und den Barkeeper in Hamburg bis zur Umschulung zum Fachinformatiker.</p></div>
-      <span class="line-num">03 / 05</span>
+      <div><div class="eyebrow">03 — Bewerbungsunterlagen</div><h2>Downloads</h2><p class="sub">Die aktuellen Unterlagen – direkt als Datei herunterladen.</p></div>
+      <span class="line-num">03 / 04</span>
     </div>
-    <ol class="career-grid">
-      <li class="career-card">
-        <div class="tl-date">09/2015 – 02/2018</div>
-        <div class="tl-title">Schneider</div>
-        <div class="tl-org">Faryab, Afghanistan</div>
-        <div class="tl-desc">
-          <ul>
-            <li>Betriebliche Ausbildung zum Schneider</li>
-            <li>Anfertigung verschiedener Kleidungsmodelle</li>
-          </ul>
+    <div class="doc-grid">
+      <article class="doc-card">
+        <div class="doc-ic">A</div>
+        <div class="doc-body">
+          <h3>Anschreiben</h3>
+          <p>Pflichtpraktikum als Fachinformatiker für Systemintegration · 25.11.2026</p>
+          <a class="doc-link" href="Anschreiben.pdf" download>PDF <span>↗</span></a>
+          <a class="doc-link" href="Anschreiben%281%29.docx" download>DOCX <span>↗</span></a>
         </div>
-      </li>
-      <li class="career-card">
-        <div class="tl-date">03/2022 – 08/2022</div>
-        <div class="tl-title">Schneider</div>
-        <div class="tl-org">Erfahrung in der Türkei gesammelt</div>
-      </li>
-      <li class="career-card">
-        <div class="tl-date">10/2024 – HEUTE</div>
-        <div class="tl-title">Barkeeper</div>
-        <div class="tl-org">Bar Hamburg GmbH · parallel zur Umschulung</div>
-        <div class="tl-desc">
-          <ul>
-            <li>Kasse bedienen &amp; abrechnen</li>
-            <li>Freundliche Betreuung und Beratung von Gästen</li>
-            <li>Einarbeitung und Anleitung neuer Mitarbeiter</li>
-          </ul>
+      </article>
+      <article class="doc-card">
+        <div class="doc-ic">L</div>
+        <div class="doc-body">
+          <h3>Lebenslauf</h3>
+          <p>Aktualisierte Version als einseitiges A4-PDF.</p>
+          <a class="doc-link" href="Lebenslauf1.pdf" download>PDF <span>↗</span></a>
         </div>
-      </li>
-      <li class="career-card">
-        <div class="tl-date">02/2026 – HEUTE</div>
-        <div class="tl-title">Fachinformatiker für Systemintegration</div>
-        <div class="tl-org">Damago GmbH · Umschulung mit Praxiseinsatz</div>
-        <div class="tl-desc">Umschulung zum Fachinformatiker für Systemintegration mit Praxis bei der Damago GmbH.</div>
-      </li>
-    </ol>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -408,7 +394,7 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <div class="head reveal">
       <div><div class="eyebrow">04 — Lernen &amp; Zertifikate</div><h2>Ausbildung</h2><p class="sub">Sprachzertifikate und Integrationskurs als Grundlage für den beruflichen Einstieg.</p></div>
-      <span class="line-num">04 / 05</span>
+      <span class="line-num">04 / 04</span>
     </div>
     <div class="duo">
       <div class="reveal">
@@ -450,7 +436,7 @@ footer a:hover{color:#fff}
 </div>
 
 <footer>
-  © 2026 Jawid Moradi · <a href="Lebenslauf%20%E2%80%93%20A4.pdf" download>Lebenslauf PDF</a> · <a href="bewerbung.html">Bewerbungsfolie</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+  © 2026 Jawid Moradi · <a href="Lebenslauf1.pdf" download>Lebenslauf PDF</a> · <a href="Anschreiben.pdf" download>Anschreiben PDF</a> · <a href="bewerbung.html">Bewerbungsfolie</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
 </footer>
 
 <script>

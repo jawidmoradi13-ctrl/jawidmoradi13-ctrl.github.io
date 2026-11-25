@@ -27,7 +27,9 @@ h1,h2{font-family:'Playfair Display',Georgia,serif;color:var(--navy);letter-spac
 h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1}
 h2{font-size:clamp(1.5rem,3.4vw,2.3rem);margin-bottom:6px}
 .kicker{font-family:monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.rule{width:56px;height:3px;background:var(--gold);margin:18px 0}
+.rule{position:relative;overflow:hidden;width:56px;height:3px;background:var(--gold);margin:18px 0}
+.rule::after{content:'';position:absolute;inset:0;width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:ruleShine 6s ease-in-out infinite}
+@keyframes ruleShine{0%,55%{transform:translateX(-130%)}100%{transform:translateX(330%)}}
 .lead{font-size:clamp(.95rem,1.7vw,1.16rem);color:var(--ink);line-height:1.7;max-width:86%}
 p{font-size:clamp(.82rem,1.35vw,1rem);line-height:1.75;color:var(--ink)}
 .muted{color:var(--muted)}
@@ -43,6 +45,8 @@ p{font-size:clamp(.82rem,1.35vw,1rem);line-height:1.75;color:var(--ink)}
 .photo img{width:100%;height:100%;object-fit:cover;display:none}
 .photo.has-photo img{display:block}
 .photo.has-photo span{display:none}
+.photo.has-photo img{animation:photoZoom 18s ease-in-out infinite alternate}
+@keyframes photoZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
 
 /* Slide 2 letter */
 .letter{display:grid;grid-template-columns:1fr 1fr;gap:6%;height:100%}
@@ -134,7 +138,7 @@ p{font-size:clamp(.82rem,1.35vw,1rem);line-height:1.75;color:var(--ink)}
           <div class="role">Fachinformatiker für Systemintegration</div>
           <div class="rule"></div>
           <p class="lead">Ich baue gerade mein Wissen in Netzwerken, IT-Sicherheit und Infrastruktur auf – mit Praxis bei der Damago GmbH.</p>
-          <div class="meta"><b>E-Mail</b> jawid.moradi13@gmail.com<br><b>Telefon</b> 0157 57794766<br><b>Führerschein</b> Klasse B<br><b>Lebenslauf</b> <a href="Lebenslauf%20%E2%80%93%20A4.pdf" download>PDF (A4)</a><br><b>Stand</b> November 2026</div>
+          <div class="meta"><b>E-Mail</b> jawid.moradi13@gmail.com<br><b>Telefon</b> 0157 57794766<br><b>Führerschein</b> Klasse B<br><b>Unterlagen</b> <a href="Lebenslauf1.pdf" download>Lebenslauf</a> · <a href="Anschreiben.pdf" download>Anschreiben</a><br><b>Stand</b> November 2026</div>
         </div>
         <div class="photo" id="photo"><img src="profilfoto.jpg" alt="Porträt von Jawid Moradi"><span>JM</span></div>
       </div>
